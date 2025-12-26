@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Savia Admin · Panel profesional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="img/logo_transparent_background.png">
+
+  <!-- Tipografías e iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --verde-savia:#4BAF8C;
+      --verde-oscuro:#2c7a62;
+      --verde-claro:#A7E3CF;
+      --arena:#FFEFD9;
+      --durazno:#FFCCB3;
+      --texto:#18322E;
+      --texto-suave:#64748b;
+      --borde:#E5E7EB;
+      --accent:#4BAF8C;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      font-family:"Poppins",system-ui,-apple-system,sans-serif;
+      min-height:100vh;
+      padding:24px 12px;
+      background:
+        radial-gradient(circle at 0% 0%, #c4f3de 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #ffd9bf 0, transparent 55%),
+        linear-gradient(145deg,#fef6ec,#e5fff5);
+      color:var(--texto);
+      overflow-x:hidden;
+    }
+
+    .admin-shell{
+      max-width:1200px;
+      margin:0 auto;
+      background:rgba(255,255,255,.96);
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:0 24px 70px rgba(15,23,42,.25);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* HEADER */
+    .admin-header{
+      padding:16px 20px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      background:linear-gradient(135deg,#fef3e7,#e5f7f1);
+      border-bottom:1px solid rgba(209,213,219,.8);
+    }
+
+    .header-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-badge{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:radial-gradient(circle at 20% 0,#ffffff,#e0f7ec);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 14px 30px rgba(15,118,110,.35);
+      flex-shrink:0;
+    }
+    .logo-badge img{
+      max-width:80%;
+      height:auto;
+      display:block;
+    }
+
+    .header-eyebrow{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#6b7280;
+    }
+    .header-title{
+      font-size:1.15rem;
+      font-weight:600;
+      color:#022c22;
+    }
+    .header-sub{
+      font-size:.8rem;
+      color:var(--texto-suave);
+    }
+
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .header-chip{
+      font-size:.75rem;
+      padding:5px 10px;
+      border-radius:999px;
+      background:rgba(22,163,74,.08);
+      color:#166534;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .header-chip i{font-size:.82rem;}
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:7px 12px;
+      font-size:.8rem;
+      font-weight:500;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      text-decoration:none;
+    }
+    .btn-outline{
+      background:#ffffff;
+      border:1px solid #d1d5db;
+      color:#374151;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      color:#f9fafb;
+      box-shadow:0 10px 26px rgba(15,118,110,.45);
+    }
+    .btn-sm{
+      padding:5px 9px;
+      font-size:.74rem;
+    }
+    .btn-full{
+      width:100%;
+      justify-content:center;
+    }
+
+    /* KPI ROW */
+    .admin-kpis{
+      padding:10px 20px 12px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.96));
+      border-bottom:1px solid #e5e7eb;
+    }
+
+    .kpi-card{
+      border-radius:18px;
+      padding:9px 12px 10px;
+      font-size:.78rem;
+      box-shadow:0 12px 28px rgba(148,163,184,.24);
+    }
+    .kpi-card:nth-child(1){
+      background:linear-gradient(135deg,#e0f2fe,#bfdbfe);
+    }
+    .kpi-card:nth-child(2){
+      background:linear-gradient(135deg,#dcfce7,#bbf7d0);
+    }
+    .kpi-card:nth-child(3){
+      background:linear-gradient(135deg,#fee2e2,#fecaca);
+    }
+    .kpi-label{color:#4b5563;}
+    .kpi-value{
+      margin-top:4px;
+      font-size:1.1rem;
+      font-weight:700;
+      color:#111827;
+    }
+
+    /* TABS */
+    .admin-tabs{
+      padding:8px 20px 0;
+      display:flex;
+      gap:8px;
+      border-bottom:1px solid #e5e7eb;
+      background:#ffffff;
+      flex-wrap:wrap;
+    }
+    .tab-btn{
+      border:none;
+      background:transparent;
+      padding:6px 12px 10px;
+      border-radius:999px 999px 0 0;
+      font-size:.82rem;
+      cursor:pointer;
+      color:#64748b;
+    }
+    .tab-btn.active{
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      color:#f9fafb;
+      box-shadow:0 -2px 12px rgba(15,118,110,.45);
+    }
+
+    .admin-main{
+      padding:14px 20px 20px;
+      background:#f9fafb;
+    }
+
+    .tab-panel{display:none;}
+    .tab-panel.active{display:block;}
+
+    /* CARDS, FORM, TABLES */
+    .card{
+      background:#ffffff;
+      border-radius:18px;
+      border:1px solid var(--borde);
+      box-shadow:0 12px 30px rgba(148,163,184,.18);
+      padding:12px 14px 14px;
+    }
+    .card-title{
+      font-size:.96rem;
+      font-weight:600;
+      color:#111827;
+      margin-bottom:3px;
+    }
+    .card-sub{
+      font-size:.8rem;
+      color:var(--texto-suave);
+      margin-bottom:8px;
+    }
+
+    .agenda-layout{
+      display:grid;
+      grid-template-columns:minmax(0,.6fr) minmax(0,1.5fr);
+      gap:16px;
+      align-items:flex-start;
+    }
+
+    .field-group{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+      margin-bottom:6px;
+    }
+
+    label{
+      font-size:.75rem;
+      color:#4b5563;
+    }
+
+    input,select,textarea{
+      width:100%;
+      border-radius:12px;
+      border:1px solid var(--borde);
+      padding:6px 8px;
+      font-size:.8rem;
+      font-family:inherit;
+      background:#f9fafb;
+      outline:none;
+      transition:border-color .15s, box-shadow .15s, background .15s;
+    }
+    textarea{resize:vertical;min-height:56px;}
+
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(74,222,128,.45);
+      background:#ffffff;
+    }
+
+    .form-grid-2{
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:8px;
+    }
+
+    .form-message{
+      margin-top:6px;
+      font-size:.78rem;
+      color:#166534;
+      background:#ecfdf5;
+      border-radius:12px;
+      border:1px solid #bbf7d0;
+      padding:6px 8px;
+      display:none;
+    }
+    .form-message.show{display:block;}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.78rem;
+    }
+    th,td{
+      padding:5px 4px;
+      border-bottom:1px solid #e5e7eb;
+      text-align:left;
+    }
+    th{
+      font-size:.74rem;
+      color:#4b5563;
+      font-weight:600;
+    }
+
+    .agenda-table-wrapper{
+      max-height:330px;
+      overflow:auto;
+      margin-top:4px;
+    }
+
+    .badge-estado{
+      font-size:.68rem;
+      padding:2px 8px;
+      border-radius:999px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      white-space:nowrap;
+    }
+    .badge-confirmado{
+      background:rgba(22,163,74,.1);
+      color:#166534;
+    }
+    .badge-pendiente{
+      background:rgba(245,158,11,.1);
+      color:#92400e;
+    }
+    .badge-cancelado{
+      background:rgba(239,68,68,.12);
+      color:#b91c1c;
+    }
+
+    .btn-table{
+      border-radius:999px;
+      border:1px solid #e5e7eb;
+      background:#f9fafb;
+      font-size:.7rem;
+      padding:3px 7px;
+      cursor:pointer;
+      margin-left:3px;
+    }
+
+    .btn-table.cancel{
+      background:#fee2e2;
+      border-color:#fecaca;
+      color:#b91c1c;
+    }
+    .btn-table.confirm{
+      background:#dcfce7;
+      border-color:#bbf7d0;
+      color:#166534;
+    }
+
+    .card-header-inline{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      margin-bottom:6px;
+    }
+
+    .agenda-filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .input-small{
+      max-width:130px;
+    }
+
+    .small-note{
+      font-size:.74rem;
+      color:var(--texto-suave);
+      margin-top:4px;
+    }
+
+    /* CONFIG */
+    .config-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:16px;
+      margin-bottom:16px;
+    }
+
+    .svc-flex{
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(0,1.25fr);
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .svc-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      max-height:260px;
+      overflow:auto;
+    }
+
+    .svc-item{
+      padding:6px 8px;
+      border-radius:12px;
+      border:1px solid var(--borde);
+      background:linear-gradient(135deg,#ffffff,#ecfdf5);
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:6px;
+    }
+    .svc-left{
+      flex:1;
+      min-width:0;
+    }
+    .svc-name{
+      font-size:.8rem;
+      font-weight:600;
+      color:#022c22;
+    }
+    .svc-meta{
+      font-size:.74rem;
+      color:var(--texto-suave);
+      margin-top:2px;
+    }
+    .svc-right{
+      text-align:right;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      align-items:flex-end;
+    }
+    .svc-precio{
+      font-size:.8rem;
+      font-weight:600;
+      color:#166534;
+    }
+    .svc-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:4px;
+      justify-content:flex-end;
+    }
+
+    .svc-actions .btn{
+      padding:3px 7px;
+      font-size:.7rem;
+      box-shadow:none;
+    }
+
+    /* ===== DASHBOARD PRO (NUEVO, NO ROMPE NADA) ===== */
+    .dash-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
+      gap:16px;
+      align-items:start;
+    }
+    .dash-chip{
+      background:rgba(2,132,199,.08);
+      color:#075985;
+    }
+
+    .dash-stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:8px;
+      margin-top:10px;
+    }
+    .dash-stat{
+      border:1px solid var(--borde);
+      border-radius:14px;
+      padding:10px 10px;
+      background:linear-gradient(135deg,#ffffff,#f8fafc);
+      box-shadow:0 10px 22px rgba(148,163,184,.14);
+    }
+    .dash-stat .label{
+      font-size:.72rem;
+      color:#64748b;
+    }
+    .dash-stat .value{
+      margin-top:4px;
+      font-size:1rem;
+      font-weight:700;
+      color:#0f172a;
+      line-height:1.1;
+    }
+
+    .dash-top{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .dash-top-title{
+      font-size:.8rem;
+      color:#0f172a;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:2px;
+    }
+    .dash-top-item{
+      border:1px solid var(--borde);
+      border-radius:14px;
+      padding:10px 10px;
+      background:linear-gradient(135deg,#ffffff,#ecfdf5);
+      box-shadow:0 10px 22px rgba(148,163,184,.12);
+    }
+    .dash-top-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .dash-top-name{
+      font-size:.82rem;
+      font-weight:600;
+      color:#022c22;
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width:70%;
+    }
+    .dash-top-meta{
+      font-size:.74rem;
+      color:#64748b;
+      margin-top:3px;
+    }
+    .dash-bar{
+      height:10px;
+      border-radius:999px;
+      background:#eef2ff;
+      overflow:hidden;
+      margin-top:8px;
+      border:1px solid rgba(148,163,184,.35);
+    }
+    .dash-bar > span{
+      display:block;
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      transition:width .2s ease;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:900px){
+      body{padding:16px 8px;}
+      .admin-shell{border-radius:22px;}
+      .admin-header{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .header-right{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .admin-kpis{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .agenda-layout{
+        grid-template-columns:1fr;
+      }
+      .config-grid{
+        grid-template-columns:1fr;
+      }
+      .svc-flex{
+        grid-template-columns:1fr;
+      }
+      .dash-layout{
+        grid-template-columns:1fr;
+      }
+      .dash-stats{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:640px){
+      .admin-kpis{
+        grid-template-columns:1fr;
+      }
+      .form-grid-2{
+        grid-template-columns:1fr;
+      }
+      .admin-main{
+        padding:12px 12px 16px;
+      }
+      .admin-tabs{
+        padding:8px 12px 0;
+      }
+      .admin-header{
+        padding:14px 14px 10px;
+        gap:10px;
+      }
+      .header-left{
+        width:100%;
+      }
+      .header-right{
+        flex-direction:row;
+        flex-wrap:wrap;
+        gap:8px;
+      }
+      .header-right .btn{
+        margin-left:auto;
+      }
+      .agenda-filters{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .agenda-filters .input-small{
+        max-width:100%;
+        flex:1 1 120px;
+      }
+      .agenda-table-wrapper{
+        max-height:none;
+        overflow-x:auto;
+      }
+      .dash-stats{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:480px){
+      body{padding:12px 6px;}
+      .header-title{font-size:1rem;}
+      .header-sub{font-size:.74rem;}
+      .card-title{font-size:.9rem;}
+      .card-sub{font-size:.76rem;}
+      table{font-size:.72rem;}
+      th,td{padding:4px 3px;}
+      .btn{font-size:.76rem;}
+      .btn-sm{font-size:.7rem;}
+      .header-right{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .header-right .btn{
+        width:100%;
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <!-- HEADER -->
+  <header class="admin-header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <img src="img/logo_transparent_background.png" alt="Savia">
+      </div>
+      <div>
+        <p class="header-eyebrow">Savia · Panel profesional</p>
+        <h1 class="header-title" id="header-nombre-negocio">Estética Bellezza</h1>
+        <p class="header-sub" id="header-rubro">Estética · Uñas · Masajes</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="header-chip">
+        <i class="fa-regular fa-calendar-check"></i> Gestión de turnos
+      </span>
+      <button class="btn btn-outline" id="btn-salir">
+        Salir
+      </button>
+    </div>
+  </header>
+
+  <!-- KPI ROW -->
+  <section class="admin-kpis">
+    <div class="kpi-card">
+      <div class="kpi-label">Ganancia estimada</div>
+      <div class="kpi-value" id="kpi-ganancia">$ 0</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Turnos (últimos 7 días)</div>
+      <div class="kpi-value" id="kpi-turnos7">0</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cancelaciones</div>
+      <div class="kpi-value" id="kpi-cancelaciones">0</div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <nav class="admin-tabs">
+    <button class="tab-btn active" data-tab="agenda">Agenda</button>
+    <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+    <button class="tab-btn" data-tab="config">Config</button>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+
+    <!-- AGENDA -->
+    <section class="tab-panel active" data-tab-panel="agenda">
+      <div class="agenda-layout">
+
+        <!-- NUEVO TURNO -->
+        <div class="card">
+          <h2 class="card-title">Nuevo turno</h2>
+          <p class="card-sub">Agendá un turno manualmente desde el local o por WhatsApp.</p>
+
+          <form id="form-nuevo-turno">
+            <div class="field-group">
+              <label for="nt-servicio">Servicio</label>
+              <select id="nt-servicio" required></select>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="nt-fecha">Fecha</label>
+                <input type="date" id="nt-fecha" required>
+              </div>
+              <div class="field-group">
+                <label for="nt-hora">Hora</label>
+                <select id="nt-hora" required></select>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="nt-cliente">Nombre</label>
+                <input type="text" id="nt-cliente" placeholder="Ej: Natalia López" required>
+              </div>
+              <div class="field-group">
+                <label for="nt-wa">WhatsApp</label>
+                <input type="tel" id="nt-wa" placeholder="Ej: 2613 38-7305" required>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="nt-notas">Notas (opcional)</label>
+              <textarea id="nt-notas" placeholder="Alergias, preferencias, recordatorios…"></textarea>
+            </div>
+
+            <div class="btn-row" style="margin-top:4px;gap:6px;">
+              <button type="submit" class="btn btn-primary">Guardar turno</button>
+            </div>
+
+            <div class="form-message" id="msg-turno">
+              Turno guardado en la agenda.
+            </div>
+          </form>
+        </div>
+
+        <!-- LISTA DE TURNOS -->
+        <div class="card">
+          <div class="card-header-inline">
+            <div>
+              <h2 class="card-title">Próximos turnos</h2>
+              <p class="card-sub">Filtrá por fecha para ver la agenda del día.</p>
+            </div>
+            <div class="agenda-filters">
+              <input type="month" id="filtro-mes" class="input-small">
+              <input type="date" id="filtro-fecha" class="input-small">
+              <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-filtros">Limpiar</button>
+            </div>
+          </div>
+
+          <div class="agenda-table-wrapper">
+            <table class="agenda-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Servicio</th>
+                  <th>Cliente</th>
+                  <th>WhatsApp</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-turnos"></tbody>
+            </table>
+          </div>
+
+          <p class="small-note"></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DASHBOARD (MEJORADO + FILTRO MENSUAL) -->
+    <section class="tab-panel" data-tab-panel="dashboard">
+
+      <div class="dash-layout">
+
+        <!-- Resumen del mes -->
+        <div class="card">
+          <div class="card-header-inline">
+            <div>
+              <h2 class="card-title">Resumen mensual</h2>
+              <p class="card-sub">Elegí un mes y mirá el rendimiento del negocio.</p>
+            </div>
+
+            <!-- NUEVO filtro mensual dashboard -->
+            <div class="agenda-filters">
+              <input type="month" id="dash-filtro-mes" class="input-small">
+              <button type="button" class="btn btn-outline btn-sm" id="dash-btn-mes-actual">
+                Mes actual
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            <span class="header-chip dash-chip">
+              <i class="fa-regular fa-calendar"></i>
+              Mes: <strong id="dash-mes-label">—</strong>
+            </span>
+            <span class="header-chip">
+              <i class="fa-solid fa-leaf"></i>
+              Savia Admin
+            </span>
+          </div>
+
+          <!-- Mini KPIs del mes (JS los llena) -->
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <div class="label">Turnos del mes</div>
+              <div class="value" id="dash-turnos-mes">0</div>
+            </div>
+            <div class="dash-stat">
+              <div class="label">Ingresos del mes</div>
+              <div class="value" id="dash-ingresos-mes">$ 0</div>
+            </div>
+            <div class="dash-stat">
+              <div class="label">Cancelaciones del mes</div>
+              <div class="value" id="dash-cancelaciones-mes">0</div>
+            </div>
+          </div>
+
+          <!-- Top servicios (JS lo llena con barras) -->
+          <div class="dash-top" style="margin-top:12px;">
+            <div class="dash-top-title">
+              <i class="fa-solid fa-chart-simple"></i> Top servicios del mes
+            </div>
+
+            <!-- Contenedor dinámico -->
+            <div id="dash-top-servicios">
+              <!-- fallback si JS todavía no lo llena -->
+              <div class="dash-top-item">
+                <div class="dash-top-row">
+                  <div style="min-width:0;">
+                    <div class="dash-top-name">Todavía no hay datos</div>
+                    <div class="dash-top-meta">Cargá turnos para ver el top del mes.</div>
+                  </div>
+                  <div style="font-size:.78rem;color:#0f172a;font-weight:700;">0</div>
+                </div>
+                <div class="dash-bar"><span style="width:0%"></span></div>
+              </div>
+            </div>
+
+            <p class="small-note">
+              * Este panel es estimado: suma el precio del servicio por turno confirmado (según tus servicios cargados).
+            </p>
+          </div>
+        </div>
+
+        <!-- Detalle por servicio -->
+        <div class="card">
+          <h2 class="card-title">Detalle por servicio</h2>
+          <p class="card-sub">Tabla completa de turnos por servicio (según el mes seleccionado).</p>
+
+          <div class="agenda-table-wrapper" style="max-height:360px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Servicio</th>
+                  <th>Cantidad de turnos</th>
+                  <th>Ingreso estimado</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-resumen-servicios"></tbody>
+            </table>
+          </div>
+
+          <p class="small-note"></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONFIG -->
+    <section class="tab-panel" data-tab-panel="config">
+      <div class="config-grid">
+        <!-- Datos negocio -->
+        <div class="card">
+          <h2 class="card-title">Datos del negocio</h2>
+          <p class="card-sub">Estos datos se usan tanto en el panel como en tu link de reservas.</p>
+
+          <form id="form-negocio">
+            <div class="field-group">
+              <label for="cfg-nombre">Nombre del negocio</label>
+              <input type="text" id="cfg-nombre" placeholder="Ej: Estética Bellezza">
+            </div>
+            <div class="field-group">
+              <label for="cfg-rubro">Rubro</label>
+              <input type="text" id="cfg-rubro" placeholder="Ej: Estética · Uñas · Masajes">
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="cfg-wa">WhatsApp negocio</label>
+                <input type="text" id="cfg-wa" placeholder="Ej: 5492613334444">
+              </div>
+              <div class="field-group">
+                <label for="cfg-color">Color principal</label>
+                <input type="color" id="cfg-color" value="#4BAF8C">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="cfg-ig">Instagram</label>
+                <input type="text" id="cfg-ig" placeholder="https://www.instagram.com/tu_negocio">
+              </div>
+              <div class="field-group">
+                <label for="cfg-fb">Facebook (opcional)</label>
+                <input type="text" id="cfg-fb" placeholder="https://www.facebook.com/tu_negocio">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              Guardar datos del negocio
+            </button>
+          </form>
+        </div>
+
+        <!-- Horario & slots -->
+        <div class="card">
+          <h2 class="card-title">Horario & slots</h2>
+          <p class="card-sub">Definí desde qué hora hasta qué hora atendés y cada cuánto tiempo.</p>
+
+          <form id="form-horario">
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="cfg-apertura">Apertura</label>
+                <input type="time" id="cfg-apertura">
+              </div>
+              <div class="field-group">
+                <label for="cfg-cierre">Cierre</label>
+                <input type="time" id="cfg-cierre">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="cfg-duracion">Duración de cada turno (minutos)</label>
+                <input type="number" id="cfg-duracion" min="5" step="5">
+              </div>
+              <div class="field-group">
+                <label for="cfg-alias">Alias / CBU para pagos (opcional)</label>
+                <input type="text" id="cfg-alias" placeholder="alias.mercadopago">
+              </div>
+            </div>
+
+            <p class="small-note">
+              Con esto generamos la lista de horarios en el turno nuevo y también en la web de reservas.
+            </p>
+
+            <button type="submit" class="btn btn-outline btn-full">
+              Guardar horario y recargar horarios
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Servicios -->
+      <div class="card">
+        <h2 class="card-title">Servicios</h2>
+        <p class="card-sub">Organizá tus servicios por categoría: depilación, faciales, manicura, etc.</p>
+
+        <div class="svc-flex">
+          <!-- Form servicio -->
+          <form id="form-servicio">
+            <input type="hidden" id="svc-id-edit">
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="svc-categoria">Categoría</label>
+                <input type="text" id="svc-categoria" placeholder="Depilación, Facial, Manicura…">
+              </div>
+              <div class="field-group">
+                <label for="svc-nombre">Nombre del servicio</label>
+                <input type="text" id="svc-nombre" placeholder="Ej: Limpieza facial profunda">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field-group">
+                <label for="svc-duracion">Duración (min)</label>
+                <input type="number" id="svc-duracion" min="5" step="5">
+              </div>
+              <div class="field-group">
+                <label for="svc-precio">Precio aprox.</label>
+                <input type="text" id="svc-precio" placeholder="$ 12000">
+              </div>
+            </div>
+
+            <div class="btn-row" style="margin-top:4px;gap:6px;">
+              <button type="submit" class="btn btn-primary btn-sm" id="btn-guardar-servicio">
+                Guardar servicio
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-servicio">
+                Limpiar
+              </button>
+            </div>
+
+            <p class="small-note">
+              Estos servicios se usan en la Agenda, en el Dashboard y en Savia Booking.
+            </p>
+          </form>
+
+          <!-- Lista servicios -->
+          <div>
+            <ul class="svc-list" id="lista-servicios"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module" src="./js/admin.js"></script>
+</body>
+</html>

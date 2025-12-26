@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Savia Booking · Turnos online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Landing de turnos online para estéticas, peluquerías y profesionales del bienestar. Tus clientas reservan en segundos.">
+  <link rel="icon" type="image/png" href="img/logo_transparent_background.png">
+
+  <!-- Tipografías Savia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --verde-savia:#4BAF8C;
+      --verde-oscuro:#2c7a62;
+      --verde-claro:#A7E3CF;
+      --arena:#FFEFD9;
+      --durazno:#FFCCB3;
+      --texto:#111827;
+      --texto-suave:#6B7280;
+      --card:#FFFFFF;
+      --borde:#E5E7EB;
+      --accent:#4BAF8C; /* se actualiza por JS según el negocio */
+      --danger:#dc2626;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      font-family:"Poppins",system-ui,-apple-system,sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #c4f3de 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #ffd9bf 0, transparent 55%),
+        linear-gradient(145deg,#fef6ec,#e5fff5);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px 10px;
+      color:var(--texto);
+    }
+
+    .booking-shell{
+      width:100%;
+      max-width:460px;
+      border-radius:32px;
+      padding:8px;
+      background:linear-gradient(135deg,var(--accent),#ffccb3);
+      box-shadow:0 24px 60px rgba(15,23,42,.30);
+      position:relative;
+    }
+
+    .booking-body{
+      background:#f9fafb;
+      border-radius:26px;
+      padding:16px 14px 16px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 16px 40px rgba(15,23,42,.12);
+    }
+
+    .pill-top{
+      position:absolute;
+      top:8px;
+      left:50%;
+      transform:translateX(-50%);
+      width:110px;
+      height:10px;
+      border-radius:999px;
+      background:#E5E7EB;
+    }
+
+    /* HEADER */
+    .booking-header{
+      margin-top:10px;
+      border-radius:22px;
+      padding:12px 12px;
+      background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(244,255,251,.96));
+      border:1px solid rgba(209,250,229,.9);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      box-shadow:0 14px 32px rgba(15,23,42,.16);
+    }
+
+    .header-logo{
+      width:78px;
+      height:68px;
+      border-radius:22px;
+      background:#ffffff00;
+      border:1px solid rgba(148,163,184,.45);
+      box-shadow:0 14px 32px rgba(15,23,42,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px;
+      overflow:hidden;
+      flex-shrink:0;
+    }
+    .header-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .header-text{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+
+    .header-eyebrow{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#6b7280;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .header-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:3px 10px;
+      border-radius:999px;
+      background:rgba(75,175,140,.12);
+      color:#064e3b;
+      border:1px solid rgba(75,175,140,.20);
+      font-size:.68rem;
+      letter-spacing:.10em;
+      white-space:nowrap;
+    }
+    .header-badge i{ color:var(--accent); }
+
+    .header-name{
+      font-size:1.08rem;
+      font-weight:700;
+      color:#022c22;
+      line-height:1.1;
+      word-break:break-word;
+    }
+
+    .header-slogan{
+      font-size:.82rem;
+      color:var(--texto-suave);
+      line-height:1.25;
+    }
+
+    .header-rubro{
+      font-size:.76rem;
+      color:#065f46;
+    }
+
+    /* CARTEL LINDO (HOLA) */
+    .hello-card{
+      margin-top:10px;
+      border-radius:20px;
+      padding:12px 12px;
+      background:linear-gradient(135deg,rgba(75,175,140,.12),rgba(255,204,179,.18));
+      border:1px solid rgba(148,163,184,.28);
+      box-shadow:0 12px 26px rgba(15,23,42,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .hello-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:800;
+      font-size:.98rem;
+      color:#0f2a25;
+      margin-bottom:4px;
+    }
+    .hello-title i{ color:var(--accent); }
+    .hello-sub{
+      font-size:.78rem;
+      color:#4b5563;
+      line-height:1.35;
+    }
+    .hello-chips{
+      margin-top:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .hello-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#ffffff;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 8px 18px rgba(148,163,184,.18);
+      font-size:.74rem;
+      color:#374151;
+      white-space:nowrap;
+      font-weight:600;
+    }
+    .hello-chip i{ color:var(--accent); }
+
+    /* FORMULARIO + PASOS */
+    .form-card{
+      margin-top:10px;
+      background:var(--card);
+      border-radius:20px;
+      padding:10px 10px 11px;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 14px 30px rgba(148,163,184,.22);
+    }
+
+    .form-card-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:6px;
+      margin-bottom:6px;
+    }
+
+    .form-card-header h2{
+      font-size:.95rem;
+      color:#111827;
+    }
+
+    .form-card-header span{
+      font-size:.76rem;
+      color:#6b7280;
+    }
+
+    .step-label{
+      margin-top:8px;
+      font-size:.78rem;
+      font-weight:700;
+      color:#166534;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      padding:4px 10px;
+      border-radius:999px;
+      background:linear-gradient(135deg,rgba(74,222,128,.16),rgba(34,197,94,.10));
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .step-label::before{ content:"•"; font-size:1rem; }
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:4px;
+    }
+
+    .field-group{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+
+    label{
+      font-size:.75rem;
+      color:#4b5563;
+    }
+
+    input, select{
+      width:100%;
+      border-radius:12px;
+      border:1px solid var(--borde);
+      padding:6px 8px;
+      font-size:.8rem;
+      background:#f9fafb;
+      outline:none;
+      transition:border-color .15s, box-shadow .15s, background .15s;
+    }
+
+    input:focus, select:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(74,222,128,.4);
+      background:#ffffff;
+    }
+
+    .field-row-2{
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:6px;
+    }
+
+    .senia-text{
+      font-size:.74rem;
+      color:#6b7280;
+      margin-top:3px;
+    }
+
+    /* HORARIOS (SE MANTIENEN POR JS) */
+    .horarios-group{
+      margin-top:6px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .horarios-group label{
+      font-weight:600;
+      color:#374151;
+    }
+    .horarios-scroll{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      max-height:150px;
+      overflow-y:auto;
+      padding:4px 2px 6px;
+      scrollbar-width:thin;
+    }
+    .horarios-scroll::-webkit-scrollbar{ width:4px; }
+    .horarios-scroll::-webkit-scrollbar-track{ background:transparent; }
+    .horarios-scroll::-webkit-scrollbar-thumb{
+      background:rgba(148,163,184,.8);
+      border-radius:999px;
+    }
+
+    .slot-btn{
+      border-radius:999px;
+      border:1px solid #e5e7eb;
+      padding:6px 10px;
+      font-size:.78rem;
+      background:#ffffff;
+      color:#111827;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(148,163,184,.25);
+      transition:background .15s, color .15s, transform .1s, box-shadow .1s;
+      text-align:center;
+      width:100%;
+    }
+    .slot-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 14px rgba(148,163,184,.35);
+    }
+    .slot-btn.selected{
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      color:#ffffff;
+      border-color:transparent;
+      box-shadow:0 6px 16px rgba(22,163,74,.7);
+    }
+    .slot-btn.booked{
+      background:#fee2e2;
+      color:#9b1c1c;
+      border-color:#fecaca;
+      text-decoration:line-through;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    .btn-submit{
+      margin-top:4px;
+      border:none;
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:.82rem;
+      font-weight:700;
+      cursor:pointer;
+      color:#ffffff;
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      box-shadow:0 12px 28px rgba(22,101,52,.7);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+    .btn-submit:hover{ filter:brightness(1.06); }
+
+    .form-extra{
+      margin-top:4px;
+      font-size:.74rem;
+      color:#6b7280;
+    }
+
+    /* ===========================
+       OVERLAY CONFIRMACIÓN (PRO)
+       =========================== */
+    .confirm-message{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(15,23,42,.55);
+      z-index:100;
+      padding:16px;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+    .confirm-message.show{
+      display:flex;
+    }
+
+    @keyframes bkPop {
+      0% { transform: translateY(10px) scale(.98); opacity: .0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .confirm-message.show .confirm-inner{
+      animation: bkPop .16s ease-out;
+    }
+
+    .confirm-inner{
+      width:100%;
+      max-width:390px;
+      border-radius:22px;
+      background:linear-gradient(180deg,#ffffff,#fbfffd);
+      border:1px solid rgba(16,185,129,.22);
+      padding:14px 14px 12px;
+      box-shadow:0 34px 90px rgba(15,23,42,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .confirm-inner::before{
+      content:"";
+      position:absolute;
+      left:0; top:0;
+      height:6px; width:100%;
+      background:linear-gradient(90deg,var(--accent),#ffccb3);
+    }
+
+    .confirm-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-top:4px;
+      margin-bottom:10px;
+    }
+    .confirm-header-icon{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(16,185,129,.14);
+      color:#0f766e;
+      border:1px solid rgba(16,185,129,.20);
+      box-shadow:0 10px 20px rgba(16,185,129,.18);
+      flex-shrink:0;
+    }
+    .confirm-header-icon i{ font-size:1.05rem; }
+
+    .confirm-header-text{
+      min-width:0;
+    }
+    .confirm-header-text strong{
+      font-size:1.02rem;
+      line-height:1.15;
+      color:#0f172a;
+      display:block;
+      font-weight:800;
+    }
+    .confirm-header-text p{
+      font-size:.78rem;
+      margin-top:3px;
+      color:#475569;
+      line-height:1.25;
+    }
+
+    /* el detalle (lo inyecta el JS) */
+    #bk-confirm-data{
+      margin-top:10px;
+      background:#ffffff;
+      border:1px solid rgba(148,163,184,.32);
+      border-radius:16px;
+      padding:10px 10px;
+      box-shadow:0 12px 26px rgba(15,23,42,.08);
+    }
+
+    /* si el JS mete <ul><li>... */
+    #bk-confirm-data ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    #bk-confirm-data li{
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      padding:6px 8px;
+      border-radius:12px;
+      background:linear-gradient(135deg,rgba(75,175,140,.06),rgba(255,204,179,.06));
+      border:1px solid rgba(148,163,184,.18);
+      font-size:.8rem;
+      color:#334155;
+    }
+    #bk-confirm-data li strong{
+      min-width:110px;
+      font-weight:800;
+      color:#0f172a;
+    }
+
+    /* si el JS mete <p><strong>... */
+    #bk-confirm-data p{
+      margin:0;
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      padding:6px 8px;
+      border-radius:12px;
+      background:linear-gradient(135deg,rgba(75,175,140,.06),rgba(255,204,179,.06));
+      border:1px solid rgba(148,163,184,.18);
+      font-size:.8rem;
+      color:#334155;
+    }
+    #bk-confirm-data p strong{
+      min-width:110px;
+      font-weight:800;
+      color:#0f172a;
+    }
+
+    .confirm-actions{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn-cancel,
+    .btn-save{
+      border-radius:999px;
+      padding:10px 12px;
+      font-size:.8rem;
+      font-weight:800;
+      cursor:pointer;
+      border:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:40px;
+      transition:transform .08s ease, filter .15s ease, box-shadow .15s ease;
+      user-select:none;
+    }
+
+    .btn-cancel{
+      background:#ffffff;
+      color:#b91c1c;
+      border:1px solid rgba(220,38,38,.35);
+      box-shadow:0 12px 24px rgba(220,38,38,.10);
+    }
+    .btn-cancel:hover{ filter:brightness(1.02); }
+    .btn-cancel:active{ transform:translateY(1px); }
+
+    .btn-save{
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      color:#ffffff;
+      box-shadow:0 18px 34px rgba(22,101,52,.28);
+    }
+    .btn-save:hover{ filter:brightness(1.05); }
+    .btn-save:active{ transform:translateY(1px); }
+
+    @media (max-width:380px){
+      .confirm-actions{ grid-template-columns:1fr; }
+      #bk-confirm-data li strong,
+      #bk-confirm-data p strong{ min-width:92px; }
+    }
+
+    /* CONTACTO + REDES (REORGANIZADO PRO) */
+    .contact-bottom-section{
+      margin-top:12px;
+      background:var(--card);
+      border-radius:18px;
+      padding:12px 12px 12px;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 10px 24px rgba(148,163,184,.16);
+    }
+
+    .contact-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:800;
+      font-size:.92rem;
+      color:#111827;
+      margin-bottom:4px;
+    }
+    .contact-title i{ color:var(--accent); }
+
+    .contact-sub{
+      font-size:.76rem;
+      color:var(--texto-suave);
+      margin-bottom:10px;
+      line-height:1.35;
+    }
+
+    .contact-bottom-main{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+
+    .social-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.78rem;
+      text-decoration:none;
+      border:1px solid rgba(148,163,184,.4);
+      background:#ffffff;
+      color:#374151;
+      box-shadow:0 8px 16px rgba(148,163,184,.28);
+      font-weight:700;
+    }
+    .social-pill i{ font-size:1.05rem; }
+
+    .social-pill.wa{
+      background:linear-gradient(135deg,#25D366,#128C7E);
+      color:#ffffff;
+      border-color:transparent;
+    }
+    .social-pill.ig{
+      background:linear-gradient(135deg,#f97316,#ec4899);
+      color:#ffffff;
+      border-color:transparent;
+    }
+    .social-pill.fb{
+      background:linear-gradient(135deg,#2563eb,#1d4ed8);
+      color:#ffffff;
+      border-color:transparent;
+    }
+
+    .find-us{
+      border-top:1px dashed rgba(148,163,184,.45);
+      padding-top:10px;
+      text-align:center;
+    }
+
+    .find-us-label{
+      font-size:.74rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:#6b7280;
+      margin-bottom:6px;
+    }
+
+    .address-line{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.35);
+      background:linear-gradient(135deg,rgba(75,175,140,.10),#ffffff);
+      box-shadow:0 10px 22px rgba(148,163,184,.18);
+      max-width:100%;
+    }
+    .address-line i{
+      color:#047857;
+      flex-shrink:0;
+    }
+    .address-text{
+      font-size:.78rem;
+      color:#374151;
+      font-weight:700;
+      word-break:break-word;
+      text-align:left;
+    }
+
+    .map-link{
+      margin-top:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.40);
+      background:#ffffff;
+      color:#2563eb;
+      text-decoration:none;
+      font-size:.76rem;
+      font-weight:800;
+      box-shadow:0 8px 16px rgba(148,163,184,.20);
+    }
+    .map-link i{ font-size:.95rem; }
+
+    footer{
+      margin-top:10px;
+      text-align:center;
+      font-size:.72rem;
+      color:#6b7280;
+    }
+
+    .footer-logo{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      justify-content:center;
+      margin-bottom:4px;
+      flex-wrap:wrap;
+    }
+
+    .footer-logo img{
+      width:20px;
+      height:20px;
+      border-radius:6px;
+      background:#ecfdf5;
+      object-fit:contain;
+    }
+
+    footer a{
+      color:#2563eb;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .whatsapp-fab{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:54px;
+      height:54px;
+      border-radius:999px;
+      background:#22C55E;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#ffffff;
+      text-decoration:none;
+      box-shadow:0 20px 40px rgba(22,163,74,.7);
+      z-index:50;
+    }
+    .whatsapp-fab i{ font-size:1.6rem; }
+
+    /* ocultos por compatibilidad JS */
+    .js-hidden{ display:none !important; }
+
+    @media (max-width:520px){
+      body{ padding:14px 6px; }
+      .booking-shell{ max-width:100%; }
+      .field-row-2{ grid-template-columns:1fr; }
+      .whatsapp-fab{
+        right:14px;
+        bottom:14px;
+        width:50px;
+        height:50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="booking-shell">
+  <div class="booking-body">
+    <div class="pill-top"></div>
+
+    <!-- HEADER -->
+    <header class="booking-header">
+      <div class="header-logo">
+        <img id="logo-negocio" src="img/logo_transparent_background.png" alt="Logo negocio">
+      </div>
+      <div class="header-text">
+        <div class="header-eyebrow">
+          Turnos online
+          <span class="header-badge">
+            <i class="fa-regular fa-circle-check"></i>
+            rápido
+          </span>
+        </div>
+        <h1 class="header-name" id="bk-nombre-negocio">Nombre del negocio</h1>
+        <p class="header-slogan" id="bk-slogan">Slogan o frase corta.</p>
+        <p class="header-rubro" id="bk-rubro">Estética · Peluquería · Bienestar</p>
+      </div>
+    </header>
+
+    <!-- CARTEL: HOLA + SACÁ TU TURNO -->
+    <section class="hello-card" aria-label="Bienvenida">
+      <div class="hello-title">
+        <i class="fa-regular fa-heart"></i>
+        ¡Hola! Sacá tu turno online. Te esperamos.
+      </div>
+      <p class="hello-sub">
+        Elegí el servicio, seleccioná el día y confirmá.
+      </p>
+      <div class="hello-chips">
+        <span class="hello-chip"><i class="fa-solid fa-list-check"></i> Servicio</span>
+        <span class="hello-chip"><i class="fa-regular fa-calendar"></i> Fecha</span>
+        <span class="hello-chip"><i class="fa-regular fa-clock"></i> Horario</span>
+      </div>
+    </section>
+
+    <!-- (Se mantiene solo por compatibilidad con turnos.js si lo usa) -->
+    <p id="bk-horarios-resumen" class="js-hidden"></p>
+
+    <!-- FORMULARIO TURNOS -->
+    <section class="form-card" id="reservar">
+      <div class="form-card-header">
+        <div>
+          <h2>Reservar turno</h2>
+          <span>Completá 3 pasos, sin usuario ni clave.</span>
+        </div>
+      </div>
+
+      <form id="booking-form">
+        <!-- PASO 1 -->
+        <p class="step-label">Paso 1 · Servicio</p>
+
+        <div class="field-group" id="bk-categoria-group">
+          <label for="bk-categoria">Área / categoría</label>
+          <select id="bk-categoria"></select>
+        </div>
+
+        <div class="field-group">
+          <label for="bk-servicio">¿Qué querés hacerte?</label>
+          <select id="bk-servicio" required></select>
+        </div>
+
+        <!-- PASO 2 -->
+        <p class="step-label">Paso 2 · Fecha y horario</p>
+
+        <div class="field-row-2">
+          <div class="field-group">
+            <label for="bk-dia">Fecha</label>
+            <input type="date" id="bk-dia" required>
+          </div>
+          <div class="field-group" id="bk-modalidad-group">
+            <label for="bk-modalidad">Modalidad</label>
+            <select id="bk-modalidad"></select>
+          </div>
+        </div>
+
+        <div class="horarios-group">
+          <label>Elegí un horario disponible</label>
+          <div class="horarios-scroll" id="bk-horarios-scroll"></div>
+          <!-- select oculto solo para manejar el valor -->
+          <select id="bk-horario" required style="display:none;"></select>
+        </div>
+
+        <p class="senia-text" id="bk-senia-info">
+          Si el servicio requiere seña, te vamos a indicar el link de pago luego de solicitar el turno.
+        </p>
+
+        <!-- PASO 3 -->
+        <p class="step-label">Paso 3 · Tus datos</p>
+
+        <div class="field-group">
+          <label for="bk-nombre-cliente">Nombre y apellido</label>
+          <input type="text" id="bk-nombre-cliente" placeholder="Ej: María López" required>
+        </div>
+
+        <div class="field-row-2">
+          <div class="field-group">
+            <label for="bk-telefono">WhatsApp</label>
+            <input type="tel" id="bk-telefono" placeholder="Ej: 2613 38-7305" required>
+          </div>
+          <div class="field-group">
+            <label for="bk-mail">Mail (opcional)</label>
+            <input type="email" id="bk-mail" placeholder="Ej: nombre@mail.com">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fa-regular fa-calendar-check"></i> Confirmar turno
+        </button>
+
+        <p class="form-extra">
+          Tu turno queda registrado en la agenda del negocio y vas a recibir la confirmación o recordatorio por WhatsApp.
+        </p>
+      </form>
+    </section>
+
+    <!-- CONTACTO + REDES (PRO) -->
+    <section class="contact-bottom-section">
+      <div class="contact-title">
+        <i class="fa-regular fa-message"></i>
+        Contacto y redes
+      </div>
+      <p class="contact-sub">
+        Si necesitás ayuda con tu turno o querés reprogramar, escribinos por WhatsApp. También podés encontrarnos en redes.
+      </p>
+
+      <div class="contact-bottom-main">
+        <a href="#" target="_blank" id="bk-wa-bottom" class="social-pill wa" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i>
+          WhatsApp
+        </a>
+        <a href="#" target="_blank" id="bk-ig-bottom" class="social-pill ig" rel="noopener">
+          <i class="fa-brands fa-instagram"></i>
+          Instagram
+        </a>
+        <a href="#" target="_blank" id="bk-fb-bottom" class="social-pill fb" rel="noopener">
+          <i class="fa-brands fa-facebook-f"></i>
+          Facebook
+        </a>
+      </div>
+
+      <div class="find-us">
+        <div class="find-us-label">Encontranos en</div>
+
+        <div class="address-line">
+          <i class="fa-solid fa-location-dot"></i>
+          <div class="address-text" id="bk-direccion">Dirección · Ciudad</div>
+        </div>
+
+        <div>
+          <a href="#" target="_blank" rel="noopener" id="bk-link-mapas" class="map-link">
+            <i class="fa-regular fa-map"></i>
+            Cómo llegar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">
+        <img src="img/logo_transparent_background.png" alt="Logo Savia">
+        <a href="https://namilo1315.github.io/savia/">Sistema de turnos desarrollado por SAVIA</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- CARTEL FLOTANTE DE CONFIRMACIÓN -->
+<div class="confirm-message" id="bk-confirm">
+  <div class="confirm-inner">
+    <div class="confirm-header">
+      <div class="confirm-header-icon">
+        <i class="fa-regular fa-circle-check"></i>
+      </div>
+      <div class="confirm-header-text">
+        <strong>Tu turno fue registrado</strong>
+        <p>Lo agendamos en el sistema. Gracias, te esperamos en tu turno.</p>
+      </div>
+    </div>
+
+    <div class="confirm-body" id="bk-confirm-data">
+      <!-- Detalle del turno por JS -->
+    </div>
+
+    <div class="confirm-actions">
+      <button type="button" class="btn-cancel" id="bk-cancel-turno">
+        <i class="fa-regular fa-calendar-xmark"></i>
+        Cancelar turno
+      </button>
+      <button type="button" class="btn-save" id="bk-save-exit">
+        Guardar y salir
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Botón flotante WhatsApp -->
+<a href="#" target="_blank" rel="noopener" id="wa-fab" class="whatsapp-fab" aria-label="Escribir por WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Solo este script, nada más -->
+<script type="module" src="js/turnos.js"></script>
+</body>
+</html>
