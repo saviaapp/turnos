@@ -89,30 +89,28 @@
     }
 
     .header-logo{
-  width:78px;
-  height:68px;
-  border-radius:22px;                 /* redondeado como ahora */
-  background:#ffffff00;
-  border:1px solid rgba(148,163,184,.45);
-  box-shadow:0 14px 32px rgba(15,23,42,.22);
+      width:78px;
+      height:68px;
+      border-radius:22px;
+      background:#ffffff00;
+      border:1px solid rgba(148,163,184,.45);
+      box-shadow:0 14px 32px rgba(15,23,42,.22);
+      padding:0;
+      overflow:hidden;
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-  padding:0;                          /* sin padding */
-  overflow:hidden;                    /* recorta */
-  flex-shrink:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.header-logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;                   /* llena el cuadro */
-  transform:scale(1.07);              /* 👈 recorta un poco borde blanco */
-  transform-origin:center;
-  display:block;
-}
+    /* ✅ NO recorta logos: contain + sin zoom */
+    .header-logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      transform:none;
+      display:block;
+    }
 
     .header-text{
       display:flex;
@@ -214,6 +212,230 @@
     }
     .hello-chip i{ color:var(--accent); }
 
+    /* ==========================
+       TURNOS ESPECIALES
+       ========================== */
+    .specials-card{
+      margin-top:10px;
+      background:var(--card);
+      border-radius:20px;
+      padding:12px 12px 12px;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 14px 30px rgba(148,163,184,.18);
+    }
+
+    /* ✅ solo UNA definición (antes lo tenías duplicado) */
+    .specials-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:6px;
+    }
+
+    .specials-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      font-size:.92rem;
+      color:#111827;
+    }
+    .specials-title i{ color:var(--accent); }
+
+    .specials-filter{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:160px;
+    }
+    .specials-filter-label{
+      font-size:.78rem;
+      color:rgba(15,23,42,.72);
+      font-weight:700;
+    }
+    .specials-filter-select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.35);
+      background:#fff;
+      font-weight:600;
+      outline:none;
+    }
+
+    .specials-sub{
+      font-size:.76rem;
+      color:var(--texto-suave);
+      line-height:1.35;
+      margin-bottom:10px;
+    }
+
+    .specials-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .special-card{
+      width:100%;
+      border:1px solid rgba(148,163,184,.35);
+      background:linear-gradient(135deg,#ffffff,rgba(75,175,140,.04));
+      border-radius:16px;
+      padding:10px 10px;
+      text-align:left;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(15,23,42,.08);
+      transition:transform .1s, box-shadow .15s, filter .15s;
+    }
+    .special-card:hover{
+      transform:translateY(-1px);
+      box-shadow:0 14px 28px rgba(15,23,42,.12);
+    }
+    /* ✅ resaltado del especial seleccionado (tu JS agrega .active) */
+    .special-card.active{
+      border-color:rgba(75,175,140,.55);
+      box-shadow:0 16px 32px rgba(15,23,42,.14);
+    }
+
+    .special-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .special-name{
+      font-weight:900;
+      font-size:.86rem;
+      color:#0f172a;
+      line-height:1.2;
+    }
+    .special-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.70rem;
+      font-weight:900;
+      border:1px solid rgba(75,175,140,.18);
+      background:rgba(75,175,140,.10);
+      color:#065f46;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .special-meta{
+      margin-top:6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      font-size:.74rem;
+      color:#475569;
+      font-weight:700;
+    }
+    .special-meta span{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.30);
+      background:#ffffff;
+      box-shadow:0 8px 16px rgba(148,163,184,.14);
+    }
+    .special-meta i{ color:var(--accent); }
+
+    .special-promo{
+      margin-top:8px;
+      font-size:.76rem;
+      color:#0f2a25;
+      font-weight:800;
+      background:linear-gradient(135deg,rgba(255,204,179,.22),rgba(75,175,140,.10));
+      border:1px solid rgba(148,163,184,.22);
+      padding:8px 10px;
+      border-radius:14px;
+    }
+
+    .special-active{
+      margin-top:10px;
+      border-radius:16px;
+      padding:10px 10px;
+      background:linear-gradient(135deg,rgba(75,175,140,.12),rgba(255,204,179,.12));
+      border:1px solid rgba(148,163,184,.28);
+      font-size:.78rem;
+      color:#0f172a;
+      font-weight:800;
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+    }
+    .special-active i{ color:var(--accent); margin-top:2px; }
+
+    .specials-empty{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px dashed rgba(148,163,184,.55);
+      color:rgba(15,23,42,.75);
+      font-size:.9rem;
+    }
+
+    .special-clear{
+      margin-top:10px;
+      width:100%;
+      border-radius:999px;
+      padding:10px 12px;
+      border:1px solid rgba(148,163,184,.45);
+      background:#ffffff;
+      color:#0f172a;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(148,163,184,.18);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .special-clear i{ color:var(--accent); }
+
+    /* ✅ Panel servicios del día especial (para que el JS lo use) */
+    .specials-panel{
+      margin-top:10px;
+      border-radius:16px;
+      padding:10px 10px;
+      background:#ffffff;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 10px 22px rgba(15,23,42,.08);
+    }
+    .specials-panel-head{
+      font-size:.82rem;
+      font-weight:900;
+      color:#0f172a;
+      margin-bottom:8px;
+    }
+    .specials-panel-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .svc-btn{
+      width:100%;
+      border-radius:999px;
+      padding:9px 12px;
+      border:1px solid rgba(148,163,184,.35);
+      background:#fff;
+      font-weight:800;
+      font-size:.78rem;
+      cursor:pointer;
+      box-shadow:0 8px 16px rgba(148,163,184,.18);
+      text-align:center;
+    }
+    .svc-btn.active{
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      color:#fff;
+    }
+
     /* FORMULARIO + PASOS */
     .form-card{
       margin-top:10px;
@@ -305,7 +527,7 @@
       margin-top:3px;
     }
 
-    /* HORARIOS (SE MANTIENEN POR JS) */
+    /* HORARIOS */
     .horarios-group{
       margin-top:6px;
       display:flex;
@@ -388,9 +610,7 @@
       color:#6b7280;
     }
 
-    /* ===========================
-       OVERLAY CONFIRMACIÓN (PRO)
-       =========================== */
+    /* OVERLAY CONFIRMACIÓN */
     .confirm-message{
       position:fixed;
       inset:0;
@@ -403,17 +623,13 @@
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
     }
-    .confirm-message.show{
-      display:flex;
-    }
+    .confirm-message.show{ display:flex; }
 
     @keyframes bkPop {
       0% { transform: translateY(10px) scale(.98); opacity: .0; }
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
-    .confirm-message.show .confirm-inner{
-      animation: bkPop .16s ease-out;
-    }
+    .confirm-message.show .confirm-inner{ animation: bkPop .16s ease-out; }
 
     .confirm-inner{
       width:100%;
@@ -456,9 +672,7 @@
     }
     .confirm-header-icon i{ font-size:1.05rem; }
 
-    .confirm-header-text{
-      min-width:0;
-    }
+    .confirm-header-text{ min-width:0; }
     .confirm-header-text strong{
       font-size:1.02rem;
       line-height:1.15;
@@ -473,7 +687,6 @@
       line-height:1.25;
     }
 
-    /* el detalle (lo inyecta el JS) */
     #bk-confirm-data{
       margin-top:10px;
       background:#ffffff;
@@ -483,7 +696,6 @@
       box-shadow:0 12px 26px rgba(15,23,42,.08);
     }
 
-    /* si el JS mete <ul><li>... */
     #bk-confirm-data ul{
       list-style:none;
       padding:0;
@@ -504,25 +716,6 @@
       color:#334155;
     }
     #bk-confirm-data li strong{
-      min-width:110px;
-      font-weight:800;
-      color:#0f172a;
-    }
-
-    /* si el JS mete <p><strong>... */
-    #bk-confirm-data p{
-      margin:0;
-      display:flex;
-      align-items:baseline;
-      gap:8px;
-      padding:6px 8px;
-      border-radius:12px;
-      background:linear-gradient(135deg,rgba(75,175,140,.06),rgba(255,204,179,.06));
-      border:1px solid rgba(148,163,184,.18);
-      font-size:.8rem;
-      color:#334155;
-    }
-    #bk-confirm-data p strong{
       min-width:110px;
       font-weight:800;
       color:#0f172a;
@@ -572,11 +765,10 @@
 
     @media (max-width:380px){
       .confirm-actions{ grid-template-columns:1fr; }
-      #bk-confirm-data li strong,
-      #bk-confirm-data p strong{ min-width:92px; }
+      #bk-confirm-data li strong{ min-width:92px; }
     }
 
-    /* CONTACTO + REDES (REORGANIZADO PRO) */
+    /* CONTACTO + REDES */
     .contact-bottom-section{
       margin-top:12px;
       background:var(--card);
@@ -759,217 +951,266 @@
         width:50px;
         height:50px;
       }
+      .specials-head{ flex-direction:column; }
+      .specials-filter{ width:100%; min-width:0; }
     }
   </style>
 </head>
+
 <body>
+  <div class="booking-shell">
+    <div class="booking-body">
+      <div class="pill-top"></div>
 
-<div class="booking-shell">
-  <div class="booking-body">
-    <div class="pill-top"></div>
-
-    <!-- HEADER -->
-    <header class="booking-header">
-      <div class="header-logo">
-        <img id="logo-negocio" src="img/logo_transparent_background.png" alt="Logo negocio">
-      </div>
-      <div class="header-text">
-        <div class="header-eyebrow">
-          Turnos online
-          <span class="header-badge">
-            <i class="fa-regular fa-circle-check"></i>
-            rápido
-          </span>
-        </div>
-        <h1 class="header-name" id="bk-nombre-negocio">Nombre del negocio</h1>
-        <p class="header-slogan" id="bk-slogan">Slogan o frase corta.</p>
-        <p class="header-rubro" id="bk-rubro">Estética · Peluquería · Bienestar</p>
-      </div>
-    </header>
-
-    <!-- CARTEL: HOLA + SACÁ TU TURNO -->
-    <section class="hello-card" aria-label="Bienvenida">
-      <div class="hello-title">
-        <i class="fa-regular fa-heart"></i>
-        ¡Hola! Sacá tu turno online!
-      </div>
-      <p class="hello-sub">
-        Elegí el servicio, seleccioná el día y confirmá.
-      </p>
-      <div class="hello-chips">
-        <span class="hello-chip"><i class="fa-solid fa-list-check"></i> Servicio</span>
-        <span class="hello-chip"><i class="fa-regular fa-calendar"></i> Fecha</span>
-        <span class="hello-chip"><i class="fa-regular fa-clock"></i> Horario</span>
-      </div>
-    </section>
-
-    <!-- (Se mantiene solo por compatibilidad con turnos.js si lo usa) -->
-    <p id="bk-horarios-resumen" class="js-hidden"></p>
-
-    <!-- FORMULARIO TURNOS -->
-    <section class="form-card" id="reservar">
-      <div class="form-card-header">
-        <div>
-          <h2>Reservar turno</h2>
-          <span>Completá 3 pasos, sin usuario ni clave.</span>
-        </div>
-      </div>
-
-      <form id="booking-form">
-        <!-- PASO 1 -->
-        <p class="step-label">Paso 1 · Servicio</p>
-
-        <div class="field-group" id="bk-categoria-group">
-          <label for="bk-categoria">Área / categoría</label>
-          <select id="bk-categoria"></select>
+      <!-- HEADER -->
+      <header class="booking-header">
+        <div class="header-logo">
+          <img id="logo-negocio" src="img/logo_transparent_background.png" alt="Logo negocio">
         </div>
 
-        <div class="field-group">
-          <label for="bk-servicio">¿Qué querés hacerte?</label>
-          <select id="bk-servicio" required></select>
-        </div>
-
-        <!-- PASO 2 -->
-        <p class="step-label">Paso 2 · Fecha y horario</p>
-
-        <div class="field-row-2">
-          <div class="field-group">
-            <label for="bk-dia">Fecha</label>
-            <input type="date" id="bk-dia" required>
+        <div class="header-text">
+          <div class="header-eyebrow">
+            Turnos online
+            <span class="header-badge">
+              <i class="fa-regular fa-circle-check"></i>
+              rápido
+            </span>
           </div>
-          <div class="field-group" id="bk-modalidad-group">
-            <label for="bk-modalidad">Modalidad</label>
-            <select id="bk-modalidad"></select>
+          <h1 class="header-name" id="bk-nombre-negocio">Nombre del negocio</h1>
+          <p class="header-slogan" id="bk-slogan">Slogan o frase corta.</p>
+          <p class="header-rubro" id="bk-rubro">Estética · Peluquería · Bienestar</p>
+        </div>
+      </header>
+
+      <!-- CARTEL: HOLA + SACÁ TU TURNO -->
+      <section class="hello-card" aria-label="Bienvenida">
+        <div class="hello-title">
+          <i class="fa-regular fa-heart"></i>
+          ¡Hola! Sacá tu turno online!
+        </div>
+        <p class="hello-sub">
+          Elegí el servicio, seleccioná el día y confirmá.
+        </p>
+        <div class="hello-chips">
+          <span class="hello-chip"><i class="fa-solid fa-list-check"></i> Servicio</span>
+          <span class="hello-chip"><i class="fa-regular fa-calendar"></i> Fecha</span>
+          <span class="hello-chip"><i class="fa-regular fa-clock"></i> Horario</span>
+        </div>
+      </section>
+
+      <!-- TURNOS ESPECIALES -->
+      <section class="specials-card" id="bk-specials" style="display:none;">
+        <div class="specials-head">
+          <div class="specials-title">
+            <i class="fa-solid fa-bolt"></i>
+            Turnos especiales
+          </div>
+
+          <div class="specials-filter">
+            <label for="bk-specials-cat" class="specials-filter-label">Elegí Categoría</label>
+            <select id="bk-specials-cat" class="specials-filter-select">
+              <option value="">Todas</option>
+              <!-- lo completa JS -->
+            </select>
           </div>
         </div>
 
-        <div class="horarios-group">
-          <label>Elegí un horario disponible</label>
-          <div class="horarios-scroll" id="bk-horarios-scroll"></div>
-          <!-- select oculto solo para manejar el valor -->
-          <select id="bk-horario" required style="display:none;"></select>
-        </div>
-
-        <p class="senia-text" id="bk-senia-info">
-          Si el servicio requiere seña, te vamos a indicar el link de pago luego de solicitar el turno.
+        <p class="specials-sub">
+       Turnos Especiales, reservá tu horario.
         </p>
 
-        <!-- PASO 3 -->
-        <p class="step-label">Paso 3 · Tus datos</p>
+        <div class="specials-list" id="bk-specials-list"></div>
 
-        <div class="field-group">
-          <label for="bk-nombre-cliente">Nombre y apellido</label>
-          <input type="text" id="bk-nombre-cliente" placeholder="Ej: María López" required>
+        <div class="specials-empty js-hidden" id="bk-specials-empty">
+          No hay turnos especiales disponibles para esta categoría.
         </div>
 
-        <div class="field-row-2">
-          <div class="field-group">
-            <label for="bk-telefono">WhatsApp</label>
-            <input type="tel" id="bk-telefono" placeholder="Ej: 2613 38-7305" required>
-          </div>
-          <div class="field-group">
-            <label for="bk-mail">Mail (opcional)</label>
-            <input type="email" id="bk-mail" placeholder="Ej: nombre@mail.com">
-          </div>
+        <div class="special-active js-hidden" id="bk-specials-active">
+          <!-- lo inyecta JS -->
         </div>
 
-        <button type="submit" class="btn-submit">
-          <i class="fa-regular fa-calendar-check"></i> Confirmar turno
+        <!-- ✅ Panel: servicios dentro de la categoría del especial -->
+        <div class="specials-panel js-hidden" id="bk-specials-panel">
+          <div class="specials-panel-head">
+            Servicios disponibles en <b id="bk-specials-catname">Categoría</b>
+          </div>
+          <div class="specials-panel-list" id="bk-specials-svclist"></div>
+        </div>
+
+        <button type="button" class="special-clear js-hidden" id="bk-specials-clear">
+          <i class="fa-solid fa-rotate-left"></i>
+          IR A TURNOS NORMALES
         </button>
+      </section>
 
-        <p class="form-extra">
-          Tu turno queda registrado en la agenda del negocio y vas a recibir la confirmación o recordatorio por WhatsApp.
-        </p>
-      </form>
-    </section>
+      <!-- (Compatibilidad con turnos.js) -->
+      <p id="bk-horarios-resumen" class="js-hidden"></p>
 
-    <!-- CONTACTO + REDES (PRO) -->
-    <section class="contact-bottom-section">
-      <div class="contact-title">
-        <i class="fa-regular fa-message"></i>
-        Contacto y redes
-      </div>
-      <p class="contact-sub">
-        Si necesitás ayuda con tu turno o querés reprogramar, escribinos por WhatsApp. También podés encontrarnos en redes.
-      </p>
-
-      <div class="contact-bottom-main">
-        <a href="#" target="_blank" id="bk-wa-bottom" class="social-pill wa" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i>
-          WhatsApp
-        </a>
-        <a href="#" target="_blank" id="bk-ig-bottom" class="social-pill ig" rel="noopener">
-          <i class="fa-brands fa-instagram"></i>
-          Instagram
-        </a>
-        <a href="#" target="_blank" id="bk-fb-bottom" class="social-pill fb" rel="noopener">
-          <i class="fa-brands fa-facebook-f"></i>
-          Facebook
-        </a>
-      </div>
-
-      <div class="find-us">
-        <div class="find-us-label">Encontranos en</div>
-
-        <div class="address-line">
-          <i class="fa-solid fa-location-dot"></i>
-          <div class="address-text" id="bk-direccion">Dirección · Ciudad</div>
+      <!-- FORMULARIO TURNOS -->
+      <section class="form-card" id="reservar">
+        <div class="form-card-header">
+          <div>
+            <h2>Reservar turno</h2>
+            <span>Completá 3 pasos, sin usuario ni clave.</span>
+          </div>
         </div>
 
-        <div>
-          <a href="#" target="_blank" rel="noopener" id="bk-link-mapas" class="map-link">
-            <i class="fa-regular fa-map"></i>
-            Cómo llegar
+        <form id="booking-form">
+          <!-- PASO 1 -->
+          <p class="step-label">Paso 1 · Servicio</p>
+
+          <div class="field-group" id="bk-categoria-group">
+            <label for="bk-categoria">Área / categoría</label>
+            <select id="bk-categoria"></select>
+          </div>
+
+          <div class="field-group">
+            <label for="bk-servicio">¿Qué querés hacerte?</label>
+            <select id="bk-servicio" required></select>
+          </div>
+
+          <!-- PASO 2 -->
+          <p class="step-label">Paso 2 · Fecha y horario</p>
+
+          <div class="field-row-2">
+            <div class="field-group">
+              <label for="bk-dia">Fecha</label>
+              <input type="date" id="bk-dia" required>
+            </div>
+            <div class="field-group" id="bk-modalidad-group">
+              <label for="bk-modalidad">Modalidad</label>
+              <select id="bk-modalidad"></select>
+            </div>
+          </div>
+
+          <div class="horarios-group">
+            <label>Elegí un horario disponible</label>
+            <div class="horarios-scroll" id="bk-horarios-scroll"></div>
+            <select id="bk-horario" required style="display:none;"></select>
+          </div>
+
+          <p class="senia-text" id="bk-senia-info">
+            Si el servicio requiere seña, te vamos a indicar el link de pago luego de solicitar el turno.
+          </p>
+
+          <!-- PASO 3 -->
+          <p class="step-label">Paso 3 · Tus datos</p>
+
+          <div class="field-group">
+            <label for="bk-nombre-cliente">Nombre y apellido</label>
+            <input type="text" id="bk-nombre-cliente" placeholder="Ej: María López" required>
+          </div>
+
+          <div class="field-row-2">
+            <div class="field-group">
+              <label for="bk-telefono">WhatsApp</label>
+              <input type="tel" id="bk-telefono" placeholder="Ej: 2613 38-7305" required>
+            </div>
+            <div class="field-group">
+              <label for="bk-mail">Mail (opcional)</label>
+              <input type="email" id="bk-mail" placeholder="Ej: nombre@mail.com">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <i class="fa-regular fa-calendar-check"></i> Confirmar turno
+          </button>
+
+          <p class="form-extra">
+            Tu turno queda registrado en la agenda del negocio y vas a recibir la confirmación o recordatorio por WhatsApp.
+          </p>
+        </form>
+      </section>
+
+      <!-- CONTACTO + REDES -->
+      <section class="contact-bottom-section">
+        <div class="contact-title">
+          <i class="fa-regular fa-message"></i>
+          Contacto y redes
+        </div>
+        <p class="contact-sub">
+          Si necesitás ayuda con tu turno o querés reprogramar, escribinos por WhatsApp. También podés encontrarnos en redes.
+        </p>
+
+        <div class="contact-bottom-main">
+          <a href="#" target="_blank" id="bk-wa-bottom" class="social-pill wa" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+            WhatsApp
+          </a>
+          <a href="#" target="_blank" id="bk-ig-bottom" class="social-pill ig" rel="noopener">
+            <i class="fa-brands fa-instagram"></i>
+            Instagram
+          </a>
+          <a href="#" target="_blank" id="bk-fb-bottom" class="social-pill fb" rel="noopener">
+            <i class="fa-brands fa-facebook-f"></i>
+            Facebook
           </a>
         </div>
-      </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-logo">
-        <img src="img/logo_transparent_background.png" alt="Logo Savia">
-        <a href="https://namilo1315.github.io/savia/">Sistema de turnos desarrollado por SAVIA</a>
-      </div>
-    </footer>
-  </div>
-</div>
+        <div class="find-us">
+          <div class="find-us-label">Encontranos en</div>
 
-<!-- CARTEL FLOTANTE DE CONFIRMACIÓN -->
-<div class="confirm-message" id="bk-confirm">
-  <div class="confirm-inner">
-    <div class="confirm-header">
-      <div class="confirm-header-icon">
-        <i class="fa-regular fa-circle-check"></i>
-      </div>
-      <div class="confirm-header-text">
-        <strong>Tu turno fue registrado</strong>
-        <p>Lo agendamos en el sistema. Gracias, te esperamos en tu turno.</p>
-      </div>
-    </div>
+          <div class="address-line">
+            <i class="fa-solid fa-location-dot"></i>
+            <div class="address-text" id="bk-direccion">Dirección · Ciudad</div>
+          </div>
 
-    <div class="confirm-body" id="bk-confirm-data">
-      <!-- Detalle del turno por JS -->
-    </div>
+          <div>
+            <a href="#" target="_blank" rel="noopener" id="bk-link-mapas" class="map-link">
+              <i class="fa-regular fa-map"></i>
+              Cómo llegar
+            </a>
+          </div>
+        </div>
+      </section>
 
-    <div class="confirm-actions">
-      <button type="button" class="btn-cancel" id="bk-cancel-turno">
-        <i class="fa-regular fa-calendar-xmark"></i>
-        Cancelar turno
-      </button>
-      <button type="button" class="btn-save" id="bk-save-exit">
-        Guardar y salir
-      </button>
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-logo">
+          <img src="img/logo_transparent_background.png" alt="Logo Savia">
+          <!-- ✅ id para que el JS pueda setear el link si quiere -->
+          <a id="bk-link-savia" href="https://namilo1315.github.io/savia/">Sistema de turnos desarrollado por SAVIA</a>
+        </div>
+      </footer>
+
     </div>
   </div>
-</div>
 
-<!-- Botón flotante WhatsApp -->
-<a href="#" target="_blank" rel="noopener" id="wa-fab" class="whatsapp-fab" aria-label="Escribir por WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+  <!-- CARTEL FLOTANTE DE CONFIRMACIÓN -->
+  <div class="confirm-message" id="bk-confirm">
+    <div class="confirm-inner">
+      <div class="confirm-header">
+        <div class="confirm-header-icon">
+          <i class="fa-regular fa-circle-check"></i>
+        </div>
+        <div class="confirm-header-text">
+          <strong>Tu turno fue registrado</strong>
+          <p>Lo agendamos en el sistema. Gracias, te esperamos en tu turno.</p>
+        </div>
+      </div>
 
-<!-- Solo este script, nada más -->
-<script type="module" src="js/turnos.js"></script>
+      <div class="confirm-body" id="bk-confirm-data">
+        <!-- Detalle del turno por JS -->
+      </div>
+
+      <div class="confirm-actions">
+        <button type="button" class="btn-cancel" id="bk-cancel-turno">
+          <i class="fa-regular fa-calendar-xmark"></i>
+          Cancelar turno
+        </button>
+        <button type="button" class="btn-save" id="bk-save-exit">
+          Guardar y salir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="#" target="_blank" rel="noopener" id="wa-fab" class="whatsapp-fab" aria-label="Escribir por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Script -->
+  <script type="module" src="js/turnos.js"></script>
 </body>
 </html>

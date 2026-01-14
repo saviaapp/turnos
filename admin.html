@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -76,10 +77,12 @@
       justify-content:center;
       box-shadow:0 14px 30px rgba(15,118,110,.35);
       flex-shrink:0;
+      overflow:hidden;
     }
     .logo-badge img{
-      max-width:80%;
-      height:auto;
+      width:100%;
+      height:100%;
+      object-fit:cover;
       display:block;
     }
 
@@ -165,15 +168,9 @@
       font-size:.78rem;
       box-shadow:0 12px 28px rgba(148,163,184,.24);
     }
-    .kpi-card:nth-child(1){
-      background:linear-gradient(135deg,#e0f2fe,#bfdbfe);
-    }
-    .kpi-card:nth-child(2){
-      background:linear-gradient(135deg,#dcfce7,#bbf7d0);
-    }
-    .kpi-card:nth-child(3){
-      background:linear-gradient(135deg,#fee2e2,#fecaca);
-    }
+    .kpi-card:nth-child(1){ background:linear-gradient(135deg,#e0f2fe,#bfdbfe); }
+    .kpi-card:nth-child(2){ background:linear-gradient(135deg,#dcfce7,#bbf7d0); }
+    .kpi-card:nth-child(3){ background:linear-gradient(135deg,#fee2e2,#fecaca); }
     .kpi-label{color:#4b5563;}
     .kpi-value{
       margin-top:4px;
@@ -320,18 +317,9 @@
       letter-spacing:.05em;
       white-space:nowrap;
     }
-    .badge-confirmado{
-      background:rgba(22,163,74,.1);
-      color:#166534;
-    }
-    .badge-pendiente{
-      background:rgba(245,158,11,.1);
-      color:#92400e;
-    }
-    .badge-cancelado{
-      background:rgba(239,68,68,.12);
-      color:#b91c1c;
-    }
+    .badge-confirmado{ background:rgba(22,163,74,.1); color:#166534; }
+    .badge-pendiente{ background:rgba(245,158,11,.1); color:#92400e; }
+    .badge-cancelado{ background:rgba(239,68,68,.12); color:#b91c1c; }
 
     .btn-table{
       border-radius:999px;
@@ -370,9 +358,7 @@
       justify-content:flex-end;
     }
 
-    .input-small{
-      max-width:130px;
-    }
+    .input-small{ max-width:130px; }
 
     .small-note{
       font-size:.74rem;
@@ -413,10 +399,7 @@
       gap:8px;
       margin-bottom:6px;
     }
-    .svc-left{
-      flex:1;
-      min-width:0;
-    }
+    .svc-left{ flex:1; min-width:0; }
     .svc-name{
       font-size:.8rem;
       font-weight:600;
@@ -445,14 +428,13 @@
       gap:4px;
       justify-content:flex-end;
     }
-
     .svc-actions .btn{
       padding:3px 7px;
       font-size:.7rem;
       box-shadow:none;
     }
 
-    /* ===== DASHBOARD PRO (NUEVO, NO ROMPE NADA) ===== */
+    /* DASH */
     .dash-layout{
       display:grid;
       grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
@@ -477,10 +459,7 @@
       background:linear-gradient(135deg,#ffffff,#f8fafc);
       box-shadow:0 10px 22px rgba(148,163,184,.14);
     }
-    .dash-stat .label{
-      font-size:.72rem;
-      color:#64748b;
-    }
+    .dash-stat .label{ font-size:.72rem; color:#64748b; }
     .dash-stat .value{
       margin-top:4px;
       font-size:1rem;
@@ -489,12 +468,7 @@
       line-height:1.1;
     }
 
-    .dash-top{
-      margin-top:10px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
+    .dash-top{ margin-top:10px; display:flex; flex-direction:column; gap:10px; }
     .dash-top-title{
       font-size:.8rem;
       color:#0f172a;
@@ -553,77 +527,29 @@
     @media (max-width:900px){
       body{padding:16px 8px;}
       .admin-shell{border-radius:22px;}
-      .admin-header{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .header-right{
-        width:100%;
-        justify-content:flex-start;
-      }
-      .admin-kpis{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-      .agenda-layout{
-        grid-template-columns:1fr;
-      }
-      .config-grid{
-        grid-template-columns:1fr;
-      }
-      .svc-flex{
-        grid-template-columns:1fr;
-      }
-      .dash-layout{
-        grid-template-columns:1fr;
-      }
-      .dash-stats{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
+      .admin-header{ flex-direction:column; align-items:flex-start; }
+      .header-right{ width:100%; justify-content:flex-start; }
+      .admin-kpis{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .agenda-layout{ grid-template-columns:1fr; }
+      .config-grid{ grid-template-columns:1fr; }
+      .svc-flex{ grid-template-columns:1fr; }
+      .dash-layout{ grid-template-columns:1fr; }
+      .dash-stats{ grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
 
     @media (max-width:640px){
-      .admin-kpis{
-        grid-template-columns:1fr;
-      }
-      .form-grid-2{
-        grid-template-columns:1fr;
-      }
-      .admin-main{
-        padding:12px 12px 16px;
-      }
-      .admin-tabs{
-        padding:8px 12px 0;
-      }
-      .admin-header{
-        padding:14px 14px 10px;
-        gap:10px;
-      }
-      .header-left{
-        width:100%;
-      }
-      .header-right{
-        flex-direction:row;
-        flex-wrap:wrap;
-        gap:8px;
-      }
-      .header-right .btn{
-        margin-left:auto;
-      }
-      .agenda-filters{
-        width:100%;
-        justify-content:flex-start;
-      }
-      .agenda-filters .input-small{
-        max-width:100%;
-        flex:1 1 120px;
-      }
-      .agenda-table-wrapper{
-        max-height:none;
-        overflow-x:auto;
-      }
-      .dash-stats{
-        grid-template-columns:1fr;
-      }
+      .admin-kpis{ grid-template-columns:1fr; }
+      .form-grid-2{ grid-template-columns:1fr; }
+      .admin-main{ padding:12px 12px 16px; }
+      .admin-tabs{ padding:8px 12px 0; }
+      .admin-header{ padding:14px 14px 10px; gap:10px; }
+      .header-left{ width:100%; }
+      .header-right{ flex-direction:row; flex-wrap:wrap; gap:8px; }
+      .header-right .btn{ margin-left:auto; }
+      .agenda-filters{ width:100%; justify-content:flex-start; }
+      .agenda-filters .input-small{ max-width:100%; flex:1 1 120px; }
+      .agenda-table-wrapper{ max-height:none; overflow-x:auto; }
+      .dash-stats{ grid-template-columns:1fr; }
     }
 
     @media (max-width:480px){
@@ -636,399 +562,499 @@
       th,td{padding:4px 3px;}
       .btn{font-size:.76rem;}
       .btn-sm{font-size:.7rem;}
-      .header-right{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .header-right .btn{
-        width:100%;
-        justify-content:center;
-      }
+      .header-right{ flex-direction:column; align-items:flex-start; }
+      .header-right .btn{ width:100%; justify-content:center; }
     }
   </style>
 </head>
+
 <body>
+  <div class="admin-shell">
 
-<div class="admin-shell">
-
-  <!-- HEADER -->
-  <header class="admin-header">
-    <div class="header-left">
-      <div class="logo-badge">
-        <img src="img/logo_transparent_background.png" alt="Savia">
-      </div>
-      <div>
-        <p class="header-eyebrow">Savia · Panel profesional</p>
-        <h1 class="header-title" id="header-nombre-negocio">Estética Bellezza</h1>
-        <p class="header-sub" id="header-rubro">Estética · Uñas · Masajes</p>
-      </div>
-    </div>
-    <div class="header-right">
-      <span class="header-chip">
-        <i class="fa-regular fa-calendar-check"></i> Gestión de turnos
-      </span>
-      <button class="btn btn-outline" id="btn-salir">
-        Salir
-      </button>
-    </div>
-  </header>
-
-  <!-- KPI ROW -->
-  <section class="admin-kpis">
-    <div class="kpi-card">
-      <div class="kpi-label">Ganancia estimada</div>
-      <div class="kpi-value" id="kpi-ganancia">$ 0</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Turnos (últimos 7 días)</div>
-      <div class="kpi-value" id="kpi-turnos7">0</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Cancelaciones</div>
-      <div class="kpi-value" id="kpi-cancelaciones">0</div>
-    </div>
-  </section>
-
-  <!-- TABS -->
-  <nav class="admin-tabs">
-    <button class="tab-btn active" data-tab="agenda">Agenda</button>
-    <button class="tab-btn" data-tab="dashboard">Dashboard</button>
-    <button class="tab-btn" data-tab="config">Config</button>
-  </nav>
-
-  <!-- MAIN -->
-  <main class="admin-main">
-
-    <!-- AGENDA -->
-    <section class="tab-panel active" data-tab-panel="agenda">
-      <div class="agenda-layout">
-
-        <!-- NUEVO TURNO -->
-        <div class="card">
-          <h2 class="card-title">Nuevo turno</h2>
-          <p class="card-sub">Agendá un turno manualmente desde el local o por WhatsApp.</p>
-
-          <form id="form-nuevo-turno">
-            <div class="field-group">
-              <label for="nt-servicio">Servicio</label>
-              <select id="nt-servicio" required></select>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="nt-fecha">Fecha</label>
-                <input type="date" id="nt-fecha" required>
-              </div>
-              <div class="field-group">
-                <label for="nt-hora">Hora</label>
-                <select id="nt-hora" required></select>
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="nt-cliente">Nombre</label>
-                <input type="text" id="nt-cliente" placeholder="Ej: Natalia López" required>
-              </div>
-              <div class="field-group">
-                <label for="nt-wa">WhatsApp</label>
-                <input type="tel" id="nt-wa" placeholder="Ej: 2613 38-7305" required>
-              </div>
-            </div>
-
-            <div class="field-group">
-              <label for="nt-notas">Notas (opcional)</label>
-              <textarea id="nt-notas" placeholder="Alergias, preferencias, recordatorios…"></textarea>
-            </div>
-
-            <div class="btn-row" style="margin-top:4px;gap:6px;">
-              <button type="submit" class="btn btn-primary">Guardar turno</button>
-            </div>
-
-            <div class="form-message" id="msg-turno">
-              Turno guardado en la agenda.
-            </div>
-          </form>
+    <!-- HEADER -->
+    <header class="admin-header">
+      <div class="header-left">
+        <div class="logo-badge">
+          <img id="header-logo" src="img/logo_transparent_background.png" alt="Logo negocio">
         </div>
-
-        <!-- LISTA DE TURNOS -->
-        <div class="card">
-          <div class="card-header-inline">
-            <div>
-              <h2 class="card-title">Próximos turnos</h2>
-              <p class="card-sub">Filtrá por fecha para ver la agenda del día.</p>
-            </div>
-            <div class="agenda-filters">
-              <input type="month" id="filtro-mes" class="input-small">
-              <input type="date" id="filtro-fecha" class="input-small">
-              <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-filtros">Limpiar</button>
-            </div>
-          </div>
-
-          <div class="agenda-table-wrapper">
-            <table class="agenda-table">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                  <th>Servicio</th>
-                  <th>Cliente</th>
-                  <th>WhatsApp</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="tabla-turnos"></tbody>
-            </table>
-          </div>
-
-          <p class="small-note"></p>
+        <div>
+          <p class="header-eyebrow">Savia · Panel profesional</p>
+          <h1 class="header-title" id="header-nombre-negocio">Estética Bellezza</h1>
+          <p class="header-sub" id="header-rubro">Estética · Uñas · Masajes</p>
         </div>
+      </div>
 
+      <div class="header-right">
+        <span class="header-chip">
+          <i class="fa-regular fa-calendar-check"></i> Gestión de turnos
+        </span>
+        <button class="btn btn-outline" id="btn-salir">Salir</button>
+      </div>
+    </header>
+
+    <!-- KPI ROW -->
+    <section class="admin-kpis">
+      <div class="kpi-card">
+        <div class="kpi-label">Ganancia estimada (mes)</div>
+        <div class="kpi-value" id="kpi-ganancia">$ 0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Próximos 7 días</div>
+        <div class="kpi-value" id="kpi-turnos7">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cancelaciones (últimos 7 días)</div>
+        <div class="kpi-value" id="kpi-cancelaciones">0</div>
       </div>
     </section>
 
-    <!-- DASHBOARD (MEJORADO + FILTRO MENSUAL) -->
-    <section class="tab-panel" data-tab-panel="dashboard">
+    <!-- TABS -->
+    <nav class="admin-tabs">
+      <button class="tab-btn active" data-tab="agenda">Agenda</button>
+      <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+      <button class="tab-btn" data-tab="especiales">Turnos especiales</button>
+      <button class="tab-btn" data-tab="config">Config</button>
+    </nav>
 
-      <div class="dash-layout">
+    <!-- MAIN -->
+    <main class="admin-main">
 
-        <!-- Resumen del mes -->
-        <div class="card">
-          <div class="card-header-inline">
-            <div>
-              <h2 class="card-title">Resumen mensual</h2>
-              <p class="card-sub">Elegí un mes y mirá el rendimiento del negocio.</p>
-            </div>
+      <!-- AGENDA -->
+      <section class="tab-panel active" data-tab-panel="agenda">
+        <div class="agenda-layout">
 
-            <!-- NUEVO filtro mensual dashboard -->
-            <div class="agenda-filters">
-              <input type="month" id="dash-filtro-mes" class="input-small">
-              <button type="button" class="btn btn-outline btn-sm" id="dash-btn-mes-actual">
-                Mes actual
-              </button>
-            </div>
-          </div>
+          <!-- NUEVO TURNO -->
+          <div class="card">
+            <h2 class="card-title">Nuevo turno</h2>
+            <p class="card-sub">Agendá un turno manualmente desde el local o por WhatsApp.</p>
 
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-            <span class="header-chip dash-chip">
-              <i class="fa-regular fa-calendar"></i>
-              Mes: <strong id="dash-mes-label">—</strong>
-            </span>
-            <span class="header-chip">
-              <i class="fa-solid fa-leaf"></i>
-              Savia Admin
-            </span>
-          </div>
+            <form id="form-nuevo-turno">
+              <div class="field-group">
+                <label for="nt-servicio">Servicio</label>
+                <select id="nt-servicio" required></select>
+              </div>
 
-          <!-- Mini KPIs del mes (JS los llena) -->
-          <div class="dash-stats">
-            <div class="dash-stat">
-              <div class="label">Turnos del mes</div>
-              <div class="value" id="dash-turnos-mes">0</div>
-            </div>
-            <div class="dash-stat">
-              <div class="label">Ingresos del mes</div>
-              <div class="value" id="dash-ingresos-mes">$ 0</div>
-            </div>
-            <div class="dash-stat">
-              <div class="label">Cancelaciones del mes</div>
-              <div class="value" id="dash-cancelaciones-mes">0</div>
-            </div>
-          </div>
-
-          <!-- Top servicios (JS lo llena con barras) -->
-          <div class="dash-top" style="margin-top:12px;">
-            <div class="dash-top-title">
-              <i class="fa-solid fa-chart-simple"></i> Top servicios del mes
-            </div>
-
-            <!-- Contenedor dinámico -->
-            <div id="dash-top-servicios">
-              <!-- fallback si JS todavía no lo llena -->
-              <div class="dash-top-item">
-                <div class="dash-top-row">
-                  <div style="min-width:0;">
-                    <div class="dash-top-name">Todavía no hay datos</div>
-                    <div class="dash-top-meta">Cargá turnos para ver el top del mes.</div>
-                  </div>
-                  <div style="font-size:.78rem;color:#0f172a;font-weight:700;">0</div>
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="nt-fecha">Fecha</label>
+                  <input type="date" id="nt-fecha" required>
                 </div>
-                <div class="dash-bar"><span style="width:0%"></span></div>
+                <div class="field-group">
+                  <label for="nt-hora">Hora</label>
+                  <select id="nt-hora" required></select>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="nt-cliente">Nombre</label>
+                  <input type="text" id="nt-cliente" placeholder="Ej: Natalia López" required>
+                </div>
+                <div class="field-group">
+                  <label for="nt-wa">WhatsApp</label>
+                  <input type="tel" id="nt-wa" placeholder="Ej: 2613 38-7305" required>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="nt-notas">Notas (opcional)</label>
+                <textarea id="nt-notas" placeholder="Alergias, preferencias, recordatorios…"></textarea>
+              </div>
+
+              <div class="btn-row" style="margin-top:4px;gap:6px;">
+                <button type="submit" class="btn btn-primary">Guardar turno</button>
+              </div>
+
+              <div class="form-message" id="msg-turno">Turno guardado en la agenda.</div>
+            </form>
+          </div>
+
+          <!-- LISTA DE TURNOS -->
+          <div class="card">
+            <div class="card-header-inline">
+              <div>
+                <h2 class="card-title">Próximos turnos</h2>
+                <p class="card-sub">Filtrá por mes o por fecha para ver la agenda.</p>
+              </div>
+
+              <div class="agenda-filters">
+                <input type="month" id="filtro-mes" class="input-small">
+                <input type="date" id="filtro-fecha" class="input-small" placeholder="(opcional)">
+                <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-filtros">Limpiar</button>
               </div>
             </div>
 
-            <p class="small-note">
-              * Este panel es estimado: suma el precio del servicio por turno confirmado (según tus servicios cargados).
-            </p>
+            <div class="agenda-table-wrapper">
+              <table class="agenda-table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Servicio</th>
+                    <th>Cliente</th>
+                    <th>WhatsApp</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-turnos"></tbody>
+              </table>
+            </div>
+
+            <p class="small-note"></p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section class="tab-panel" data-tab-panel="dashboard">
+        <div class="dash-layout">
+
+          <!-- Resumen del mes -->
+          <div class="card">
+            <div class="card-header-inline">
+              <div>
+                <h2 class="card-title">Resumen mensual</h2>
+                <p class="card-sub">Elegí un mes y mirá el rendimiento del negocio.</p>
+              </div>
+
+              <div class="agenda-filters">
+                <input type="month" id="dash-filtro-mes" class="input-small">
+                <button type="button" class="btn btn-outline btn-sm" id="dash-btn-mes-actual">Mes actual</button>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span class="header-chip dash-chip">
+                <i class="fa-regular fa-calendar"></i>
+                Mes: <strong id="dash-mes-label">—</strong>
+              </span>
+              <span class="header-chip">
+                <i class="fa-solid fa-leaf"></i>
+                Savia Admin
+              </span>
+            </div>
+
+            <div class="dash-stats">
+              <div class="dash-stat">
+                <div class="label">Turnos del mes</div>
+                <div class="value" id="dash-turnos-mes">0</div>
+              </div>
+              <div class="dash-stat">
+                <div class="label">Ingresos del mes</div>
+                <div class="value" id="dash-ingresos-mes">$ 0</div>
+              </div>
+              <div class="dash-stat">
+                <div class="label">Cancelaciones del mes</div>
+                <div class="value" id="dash-cancelaciones-mes">0</div>
+              </div>
+            </div>
+
+            <div class="dash-top" style="margin-top:12px;">
+              <div class="dash-top-title">
+                <i class="fa-solid fa-chart-simple"></i> Top servicios del mes
+              </div>
+
+              <div id="dash-top-servicios">
+                <div class="dash-top-item">
+                  <div class="dash-top-row">
+                    <div style="min-width:0;">
+                      <div class="dash-top-name">Todavía no hay datos</div>
+                      <div class="dash-top-meta">Cargá turnos para ver el top del mes.</div>
+                    </div>
+                    <div style="font-size:.78rem;color:#0f172a;font-weight:700;">0</div>
+                  </div>
+                  <div class="dash-bar"><span style="width:0%"></span></div>
+                </div>
+              </div>
+
+              <p class="small-note">
+                * Estimado: suma el precio del servicio por turno confirmado (según tus servicios cargados).
+              </p>
+            </div>
+          </div>
+
+          <!-- Detalle por servicio -->
+          <div class="card">
+            <h2 class="card-title">Detalle por servicio</h2>
+            <p class="card-sub">Tabla completa de turnos por servicio (según el mes seleccionado).</p>
+
+            <div class="agenda-table-wrapper" style="max-height:360px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Servicio</th>
+                    <th>Cantidad de turnos</th>
+                    <th>Ingreso estimado</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-resumen-servicios"></tbody>
+              </table>
+            </div>
+
+            <p class="small-note"></p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TURNOS ESPECIALES -->
+      <section class="tab-panel" data-tab-panel="especiales">
+        <div class="agenda-layout">
+
+          <!-- FORM ESPECIAL -->
+          <div class="card">
+            <h2 class="card-title">Turnos especiales</h2>
+            <p class="card-sub">Activá turnos por días/horarios específicos (máquinas alquiladas, promos, etc.).</p>
+
+            <form id="form-especial">
+              <input type="hidden" id="esp-id-edit">
+
+              <div class="field-group">
+                <label for="esp-servicio">Servicio (máquina / especial)</label>
+                <select id="esp-servicio" required></select>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="esp-fecha">Fecha</label>
+                  <input type="date" id="esp-fecha" required>
+                </div>
+                <div class="field-group">
+                  <label for="esp-activo">Estado</label>
+                  <select id="esp-activo">
+                    <option value="true" selected>Activo</option>
+                    <option value="false">Pausado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="esp-promo">Promo / detalle (opcional)</label>
+                <textarea id="esp-promo" placeholder="Ej: Promo por máquina alquilada · cupos limitados · 20% off..."></textarea>
+              </div>
+
+              <div class="field-group">
+                <label>Horarios habilitados (tocá para seleccionar)</label>
+                <div id="esp-slots"
+                  style="display:flex;flex-wrap:wrap;gap:6px;max-height:180px;overflow:auto;padding:6px;border:1px solid var(--borde);border-radius:14px;background:#f9fafb;">
+                </div>
+                <div class="small-note">
+                  Si no seleccionás horarios, se usarán los horarios normales del negocio (solo se destacará como “especial”).
+                </div>
+              </div>
+
+              <div class="btn-row" style="margin-top:6px;gap:6px;display:flex;flex-wrap:wrap;">
+                <button type="submit" class="btn btn-primary btn-sm" id="btn-guardar-especial">Guardar especial</button>
+                <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-especial">Limpiar</button>
+              </div>
+
+              <div class="form-message" id="msg-especial">Especial guardado.</div>
+            </form>
+          </div>
+
+          <!-- LISTA ESPECIALES -->
+          <div class="card">
+            <div class="card-header-inline">
+              <div>
+                <h2 class="card-title">Especiales cargados</h2>
+                <p class="card-sub">Se muestran por mes. Podés editar, pausar o borrar.</p>
+              </div>
+              <div class="agenda-filters">
+                <input type="month" id="esp-filtro-mes" class="input-small">
+              </div>
+            </div>
+
+            <div class="agenda-table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Servicio</th>
+                    <th>Promo</th>
+                    <th>Horarios</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-especiales"></tbody>
+              </table>
+            </div>
+
+            <p class="small-note">Tip: para máquinas alquiladas, cargá solo los horarios reales de ese día.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CONFIG -->
+      <section class="tab-panel" data-tab-panel="config">
+        <div class="config-grid">
+
+          <!-- Datos negocio -->
+          <div class="card">
+            <h2 class="card-title">Datos del negocio</h2>
+            <p class="card-sub">Estos datos se usan tanto en el panel como en tu link de reservas.</p>
+
+            <form id="form-negocio">
+              <div class="field-group">
+                <label for="cfg-nombre">Nombre del negocio</label>
+                <input type="text" id="cfg-nombre" placeholder="Ej: Estética Bellezza">
+              </div>
+
+              <div class="field-group">
+                <label for="cfg-slogan">Slogan (se ve en la web de turnos)</label>
+                <input type="text" id="cfg-slogan" placeholder="Ej: Belleza con un clic.">
+              </div>
+
+              <div class="field-group">
+                <label for="cfg-rubro">Rubro</label>
+                <input type="text" id="cfg-rubro" placeholder="Ej: Estética · Uñas · Masajes">
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="cfg-wa">WhatsApp negocio</label>
+                  <input type="text" id="cfg-wa" placeholder="Ej: 5492613334444">
+                </div>
+                <div class="field-group">
+                  <label for="cfg-color">Color principal</label>
+                  <input type="color" id="cfg-color" value="#4BAF8C">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="cfg-ig">Instagram</label>
+                  <input type="text" id="cfg-ig" placeholder="https://www.instagram.com/tu_negocio">
+                </div>
+                <div class="field-group">
+                  <label for="cfg-fb">Facebook (opcional)</label>
+                  <input type="text" id="cfg-fb" placeholder="https://www.facebook.com/tu_negocio">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="cfg-direccion">Dirección</label>
+                  <input type="text" id="cfg-direccion" placeholder="Ej: San Martín 123">
+                </div>
+                <div class="field-group">
+                  <label for="cfg-ciudad">Ciudad</label>
+                  <input type="text" id="cfg-ciudad" placeholder="Ej: Maipú · Mendoza">
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="cfg-maps">Link de Google Maps (Cómo llegar)</label>
+                <input type="text" id="cfg-maps" placeholder="Pegá el link de Google Maps">
+              </div>
+
+              <div class="field-group">
+                <label for="cfg-logo-url">Logo URL (opcional)</label>
+                <input type="text" id="cfg-logo-url" placeholder="https://.../logo.png">
+              </div>
+
+              <div class="field-group">
+                <label for="cfg-horarios-resumen">Horarios (texto visible en la web)</label>
+                <input type="text" id="cfg-horarios-resumen" placeholder="Ej: Lun a Vie 09:00 a 20:00 · Sáb 09:00 a 13:00">
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">Guardar datos del negocio</button>
+            </form>
+          </div>
+
+          <!-- Horario & slots -->
+          <div class="card">
+            <h2 class="card-title">Horario & slots</h2>
+            <p class="card-sub">Definí desde qué hora hasta qué hora atendés y cada cuánto tiempo.</p>
+
+            <form id="form-horario">
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="cfg-apertura">Apertura</label>
+                  <input type="time" id="cfg-apertura">
+                </div>
+                <div class="field-group">
+                  <label for="cfg-cierre">Cierre</label>
+                  <input type="time" id="cfg-cierre">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="cfg-duracion">Duración de cada turno (minutos)</label>
+                  <input type="number" id="cfg-duracion" min="5" step="5">
+                </div>
+                <div class="field-group">
+                  <label for="cfg-alias">Alias / CBU para pagos (opcional)</label>
+                  <input type="text" id="cfg-alias" placeholder="alias.mercadopago">
+                </div>
+              </div>
+
+              <p class="small-note">
+                Con esto generamos la lista de horarios en el turno nuevo y también en la web de reservas.
+              </p>
+
+              <button type="submit" class="btn btn-outline btn-full">Guardar horario y recargar horarios</button>
+            </form>
           </div>
         </div>
 
-        <!-- Detalle por servicio -->
+        <!-- Servicios -->
         <div class="card">
-          <h2 class="card-title">Detalle por servicio</h2>
-          <p class="card-sub">Tabla completa de turnos por servicio (según el mes seleccionado).</p>
+          <h2 class="card-title">Servicios</h2>
+          <p class="card-sub">Organizá tus servicios por categoría: depilación, faciales, manicura, etc.</p>
 
-          <div class="agenda-table-wrapper" style="max-height:360px;">
-            <table>
-              <thead>
-                <tr>
-                  <th>Servicio</th>
-                  <th>Cantidad de turnos</th>
-                  <th>Ingreso estimado</th>
-                </tr>
-              </thead>
-              <tbody id="tabla-resumen-servicios"></tbody>
-            </table>
-          </div>
+          <div class="svc-flex">
+            <!-- Form servicio -->
+            <form id="form-servicio">
+              <input type="hidden" id="svc-id-edit">
 
-          <p class="small-note"></p>
-        </div>
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="svc-categoria">Categoría</label>
+                  <input type="text" id="svc-categoria" placeholder="Depilación, Facial, Manicura…">
+                </div>
+                <div class="field-group">
+                  <label for="svc-nombre">Nombre del servicio</label>
+                  <input type="text" id="svc-nombre" placeholder="Ej: Limpieza facial profunda">
+                </div>
+              </div>
 
-      </div>
-    </section>
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label for="svc-duracion">Duración (min)</label>
+                  <input type="number" id="svc-duracion" min="5" step="5">
+                </div>
+                <div class="field-group">
+                  <label for="svc-precio">Precio aprox.</label>
+                  <input type="text" id="svc-precio" placeholder="$ 12000">
+                </div>
+              </div>
 
-    <!-- CONFIG -->
-    <section class="tab-panel" data-tab-panel="config">
-      <div class="config-grid">
-        <!-- Datos negocio -->
-        <div class="card">
-          <h2 class="card-title">Datos del negocio</h2>
-          <p class="card-sub">Estos datos se usan tanto en el panel como en tu link de reservas.</p>
+              <div class="btn-row" style="margin-top:4px;gap:6px;">
+                <button type="submit" class="btn btn-primary btn-sm" id="btn-guardar-servicio">Guardar servicio</button>
+                <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-servicio">Limpiar</button>
+              </div>
 
-          <form id="form-negocio">
-            <div class="field-group">
-              <label for="cfg-nombre">Nombre del negocio</label>
-              <input type="text" id="cfg-nombre" placeholder="Ej: Estética Bellezza">
+              <p class="small-note">
+                Estos servicios se usan en la Agenda, en el Dashboard y en Savia Booking.
+              </p>
+            </form>
+
+            <!-- Lista servicios -->
+            <div>
+              <ul class="svc-list" id="lista-servicios"></ul>
             </div>
-            <div class="field-group">
-              <label for="cfg-rubro">Rubro</label>
-              <input type="text" id="cfg-rubro" placeholder="Ej: Estética · Uñas · Masajes">
-            </div>
-
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="cfg-wa">WhatsApp negocio</label>
-                <input type="text" id="cfg-wa" placeholder="Ej: 5492613334444">
-              </div>
-              <div class="field-group">
-                <label for="cfg-color">Color principal</label>
-                <input type="color" id="cfg-color" value="#4BAF8C">
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="cfg-ig">Instagram</label>
-                <input type="text" id="cfg-ig" placeholder="https://www.instagram.com/tu_negocio">
-              </div>
-              <div class="field-group">
-                <label for="cfg-fb">Facebook (opcional)</label>
-                <input type="text" id="cfg-fb" placeholder="https://www.facebook.com/tu_negocio">
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-full">
-              Guardar datos del negocio
-            </button>
-          </form>
-        </div>
-
-        <!-- Horario & slots -->
-        <div class="card">
-          <h2 class="card-title">Horario & slots</h2>
-          <p class="card-sub">Definí desde qué hora hasta qué hora atendés y cada cuánto tiempo.</p>
-
-          <form id="form-horario">
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="cfg-apertura">Apertura</label>
-                <input type="time" id="cfg-apertura">
-              </div>
-              <div class="field-group">
-                <label for="cfg-cierre">Cierre</label>
-                <input type="time" id="cfg-cierre">
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="cfg-duracion">Duración de cada turno (minutos)</label>
-                <input type="number" id="cfg-duracion" min="5" step="5">
-              </div>
-              <div class="field-group">
-                <label for="cfg-alias">Alias / CBU para pagos (opcional)</label>
-                <input type="text" id="cfg-alias" placeholder="alias.mercadopago">
-              </div>
-            </div>
-
-            <p class="small-note">
-              Con esto generamos la lista de horarios en el turno nuevo y también en la web de reservas.
-            </p>
-
-            <button type="submit" class="btn btn-outline btn-full">
-              Guardar horario y recargar horarios
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Servicios -->
-      <div class="card">
-        <h2 class="card-title">Servicios</h2>
-        <p class="card-sub">Organizá tus servicios por categoría: depilación, faciales, manicura, etc.</p>
-
-        <div class="svc-flex">
-          <!-- Form servicio -->
-          <form id="form-servicio">
-            <input type="hidden" id="svc-id-edit">
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="svc-categoria">Categoría</label>
-                <input type="text" id="svc-categoria" placeholder="Depilación, Facial, Manicura…">
-              </div>
-              <div class="field-group">
-                <label for="svc-nombre">Nombre del servicio</label>
-                <input type="text" id="svc-nombre" placeholder="Ej: Limpieza facial profunda">
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="field-group">
-                <label for="svc-duracion">Duración (min)</label>
-                <input type="number" id="svc-duracion" min="5" step="5">
-              </div>
-              <div class="field-group">
-                <label for="svc-precio">Precio aprox.</label>
-                <input type="text" id="svc-precio" placeholder="$ 12000">
-              </div>
-            </div>
-
-            <div class="btn-row" style="margin-top:4px;gap:6px;">
-              <button type="submit" class="btn btn-primary btn-sm" id="btn-guardar-servicio">
-                Guardar servicio
-              </button>
-              <button type="button" class="btn btn-outline btn-sm" id="btn-limpiar-servicio">
-                Limpiar
-              </button>
-            </div>
-
-            <p class="small-note">
-              Estos servicios se usan en la Agenda, en el Dashboard y en Savia Booking.
-            </p>
-          </form>
-
-          <!-- Lista servicios -->
-          <div>
-            <ul class="svc-list" id="lista-servicios"></ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
-</div>
+    </main>
+  </div>
 
-<script type="module" src="./js/admin.js"></script>
+  <script type="module" src="./js/admin.js"></script>
 </body>
 </html>
