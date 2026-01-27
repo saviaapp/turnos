@@ -5,6 +5,7 @@
 //  - Solapa de servicios (solo categoría del especial)
 //  - Evita doble reserva (fecha+hora) antes de guardar
 //  ✅ NUEVO: Solapa/accordion para lista larga de servicios especiales (con scroll)
+//  ✅ NUEVO: Modalidad SIEMPRE: Presencial + Online
 // ===============================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -548,7 +549,7 @@ async function cargarNegocioYConfig() {
       "https://wa.me/" +
       telClean +
       "?text=" +
-      encodeURIComponent(`Hola, quiero reservar un turno en ${state.negocio.nombre || "tu consulta"} 🙌`);
+      encodeURIComponent(`Hola, quiero reservar un turno en ${state.negocio.nombre || "tu consulta"} `);
   }
   if (waFab) waFab.href = waHref;
   if (waBottom) waBottom.href = waHref;
@@ -731,23 +732,33 @@ function configurarCategoriasYServicios() {
     llenarServiciosPorCategoria(null);
   }
 
+  // ✅ MODALIDAD: siempre mostrar Presencial + Online (sin romper lo actual)
   if (modalidadGroup && selectModalidad) {
-    const setMod = new Set();
-    state.servicios.forEach((s) => s.modalidad && setMod.add(s.modalidad));
-    const modalidades = Array.from(setMod);
+    const BASE = ["Presencial", "Online"];
 
-    if (modalidades.length) {
-      modalidadGroup.style.display = "block";
-      selectModalidad.innerHTML = "";
-      modalidades.forEach((m) => {
-        const opt = document.createElement("option");
-        opt.value = m;
-        opt.textContent = m;
-        selectModalidad.appendChild(opt);
-      });
-    } else {
-      modalidadGroup.style.display = "none";
-    }
+    // armamos set con base + lo que venga de firestore (por si algún día guardás otras)
+    const setMod = new Set(BASE);
+    state.servicios.forEach((s) => s.modalidad && setMod.add(String(s.modalidad).trim()));
+
+    // orden: base primero, resto después
+    const extras = Array.from(setMod).filter((m) => !BASE.includes(m) && m);
+    extras.sort((a, b) => a.localeCompare(b, "es"));
+    const modalidades = [...BASE, ...extras];
+
+    modalidadGroup.style.display = "block";
+    selectModalidad.innerHTML = "";
+    modalidades.forEach((m) => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      selectModalidad.appendChild(opt);
+    });
+
+    // mantiene el comportamiento actual: si el servicio tiene modalidad, se selecciona esa
+    syncModalidadToServicio(obtenerServicioSeleccionado());
+
+    // fallback si por algún motivo queda vacío
+    if (!selectModalidad.value) selectModalidad.value = "Presencial";
   }
 
   if (selectServicio && !selectServicio.dataset.bound) {
